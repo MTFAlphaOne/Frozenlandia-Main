@@ -1,21 +1,24 @@
-So the problem is, that the Devs we have in Germany or generally in SCPSL Germany, are not soo... competently
+﻿So the problem is, that the Devs we have in Germany or generally in SCPSL Germany, are not soo... competently
 If its okay for you, it would be a Plugin with some things in it.
 
 It should be the Mainplugin of the Server (FL-Main)
-Features would be: When the Warhead explodes, all Doors and Gates explode with it.
+Features would be: 
+
+✔️ When the Warhead explodes, all Doors and Gates explode with it.
 ---------------------------------------------------------------------------------------------------------------
-                                         As soon as MTF/Chaos spawns, every light in the facility should flicker green or blue for 3sec.
+✔️As soon as MTF/Chaos spawns, every light in the facility should flicker green or blue for 3sec.
 ---------------------------------------------------------------------------------------------------------------
-                                         Kills and damage should be displayed for the SCPs
+Kills and damage should be displayed for the SCPs
 ---------------------------------------------------------------------------------------------------------------
-                                         Buddysystem (If you want to play a role with a friend, you can easily send a request to your friend using .buddy (NAME). This                                                 person then receives a request and can accept it with .buddy accept.
-                                         Both come in the same role
+Buddysystem (If you want to play a role with a friend, you can easily send a request to your friend using .buddy (NAME). This person then receives a request and can accept it with .buddy accept.
+
+Both come in the same role
 ---------------------------------------------------------------------------------------------------------------
-                                         At the end of the round, FriendlyFire should activate.
+At the end of the round, FriendlyFire should activate.
 ---------------------------------------------------------------------------------------------------------------
-                                         Endless Battery for the radios
+Endless Battery for the radios
 ---------------------------------------------------------------------------------------------------------------
-                                         The elevators go up/down faster or slower, always completely randomly
+The elevators go up/down faster or slower, always completely randomly
 ---------------------------------------------------------------------------------------------------------------
-                                         Weapons deliveries for the Chaos/MTF. A delivery of weapons/ammunition arrives every 6 minutes. CASSIE then sends a                                                                       message accordingly (I'll leave it to you to decide which message arrives. It just shouldn't be too long and maybe contain an                                                                   error) 
-I hope that's not too much and otherwise I would pay you for it, I really appreciate your work if you would be ready to do it
+Weapons deliveries for the Chaos/MTF. A delivery of weapons/ammunition arrives every 6 minutes. CASSIE then sends a message accordingly
+(I'll leave it to you to decide which message arrives. It just shouldn't be too long and maybe contain an error) 
