@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using Exiled.API.Interfaces;
-using Exiled.Events.Handlers;
-using MEC;
-using UnityEngine;
+using FL_Main.EventHandlers;
 using Server = Exiled.Events.Handlers.Server;
 using Warhead = Exiled.Events.Handlers.Warhead;
 namespace FL_Main
@@ -16,6 +9,7 @@ namespace FL_Main
     public class Plugin : Plugin<Config>
     {
         private readonly MapHandlers MapHandlers = new MapHandlers();
+        private readonly ServerHandlers serverHandlers = new ServerHandlers();
         /// <inheritdoc/>
         public override string Name { get; } = "FL Main Plugin";
 
@@ -25,30 +19,31 @@ namespace FL_Main
         /// <inheritdoc/>
         public override string Author { get; } = "Dashtiss";
 
-        /// <inheritdoc/>
-        public override PluginPriority Priority { get; } = PluginPriority.High;
+
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1,0,0);
+        public override Version Version { get; } = new Version(1,2,0);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 2, 1);
 
         public override void OnEnabled()
         {
-            
+            Server.RespawningTeam += MapHandlers.OnRespawningTeam;
+            Warhead.Detonated += MapHandlers.OnDetonated;
+            Server.RoundStarted += serverHandlers.OnRoundStarted;
+            Log.Info("FL-Main Plugin All Registered");
+
             base.OnEnabled();
         }
         public override void OnDisabled()
         {
 
+            Server.RespawningTeam -= MapHandlers.OnRespawningTeam;
+            Warhead.Detonated -= MapHandlers.OnDetonated;
+            Server.RoundStarted -= serverHandlers.OnRoundStarted;
+            Log.Info("FL-Main Plugin All Unregistered");
             base.OnDisabled();
         }
-        private void RegisterEvents()
-        {
-            Server.RespawningTeam += MapHandlers.OnRespawningTeam;
-            Warhead.Detonated += MapHandlers.OnDetonated;
-        }
-
     }
 }

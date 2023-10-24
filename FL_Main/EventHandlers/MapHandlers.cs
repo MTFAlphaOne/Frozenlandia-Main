@@ -5,10 +5,10 @@ using MEC;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Random = System.Random;
 
 public class MapHandlers
 {
-    readonly System.Random random;
 
     public void OnDetonated()
     {
@@ -26,8 +26,11 @@ public class MapHandlers
 
     public void OnRespawningTeam(Exiled.Events.EventArgs.Server.RespawningTeamEventArgs ev)
     {
+        Log.Debug("Running Random Lights");
+        Random random = new Random();
         if (ev.NextKnownTeam == Respawning.SpawnableTeamType.NineTailedFox)
         {
+            Log.Debug("Running MTF Lights");
             for (int i = 0; i < 3; i++)
             {
                 foreach (Room room in Room.List)
@@ -43,6 +46,7 @@ public class MapHandlers
         }
         else if (ev.NextKnownTeam == Respawning.SpawnableTeamType.ChaosInsurgency)
         {
+            Log.Debug("Running Chaos Lights");
             for (int i = 0; i < 3; i++)
             {
                 foreach (Room room in Room.List)
