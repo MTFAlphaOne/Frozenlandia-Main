@@ -52,7 +52,7 @@ namespace FL_Main
             }
         };
 
-[Description("What will Chaos Spawn Delivery spawn in")]
+        [Description("What will Chaos Spawn Delivery spawn in")]
         public List<ItemSpawn> ChaosItems { get; set; } = new List<ItemSpawn>
         {
             new ItemSpawn
@@ -74,7 +74,12 @@ namespace FL_Main
                 MaxAmmount=6,
             }
         };
-
+        [Description("What CASSIE will say when the MTF dilivery happens")]
+        public string MTFDelCassie { get; set; } = "jam_012_0 yield_01 arrival of mobile task force materials has entered the facility area";
+        public string MTFDelCassieSub { get; set; } = "Arrival of MTF Materials has arrived";
+        [Description("What CASSIE will say when the Chaos dilivery happens")]
+        public string ChaosDelCassie { get; set; } = "jam_012_0 yield_01 arrival of chaos insurgency materials has entered the facility area";
+        public string ChaosDelCassieSub { get; set; } = "Arrival of Chaos Insurgency Materials has arrived";
 
         [Description("Don't Mess with these unless you know what your doing")]
         public List<Vector3> MTFSpawnPostitions { get; set; } = new List<Vector3>

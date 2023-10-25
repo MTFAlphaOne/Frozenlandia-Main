@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using FL_Main.ConfigObjects;
 using MEC;
@@ -69,9 +70,9 @@ namespace FL_Main.Coroutines
         }
         public void MTFHelp()
         {
-            Exiled.API.Features.Respawn.SummonNtfChopper();
+            Respawn.SummonNtfChopper();
             Timing.WaitForSeconds(15);
-
+            Cassie.MessageTranslated(config.MTFDelCassie, config.MTFDelCassieSub);
             foreach (ItemSpawn itemSpawn in config.MTFItems)
             {
                 System.Random random = new System.Random();
@@ -87,9 +88,9 @@ namespace FL_Main.Coroutines
         }
         public void ChaosHelp()
         {
-            Exiled.API.Features.Respawn.SummonChaosInsurgencyVan();
+            Respawn.SummonChaosInsurgencyVan();
             Timing.WaitForSeconds(13);
-
+            Cassie.MessageTranslated(config.ChaosDelCassie, config.ChaosDelCassieSub);
             foreach (ItemSpawn itemSpawn in config.ChaosItems)
             {
                 System.Random random = new System.Random();
