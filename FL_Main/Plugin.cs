@@ -4,12 +4,17 @@ using Exiled.API.Features;
 using FL_Main.EventHandlers;
 using Server = Exiled.Events.Handlers.Server;
 using Warhead = Exiled.Events.Handlers.Warhead;
+using Player = Exiled.Events.Handlers.Player;
+using FL_Main.Commands;
+using System.Collections.Generic;
+
 namespace FL_Main
 {
     public class Plugin : Plugin<Config>
     {
         private readonly MapHandlers MapHandlers = new MapHandlers();
         private readonly ServerHandlers serverHandlers = new ServerHandlers();
+        private readonly PlayerHandlers playerHandlers = new PlayerHandlers();
         /// <inheritdoc/>
         public override string Name { get; } = "FL Main Plugin";
 
@@ -27,11 +32,28 @@ namespace FL_Main
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 2, 1);
 
+
+
+
+        public Dictionary<string, string> buddies = new Dictionary<string, string>();
+
+        public Dictionary<string, Player> buddyRequests = new Dictionary<string, Player>();
+
+        public static Plugin singleton;
+
+
+
+
+
         public override void OnEnabled()
         {
             Server.RespawningTeam += MapHandlers.OnRespawningTeam;
             Warhead.Detonated += MapHandlers.OnDetonated;
+
             Server.RoundStarted += serverHandlers.OnRoundStarted;
+            Server.RoundEnded += serverHandlers.OnRoundEnded;
+
+            Player.UsingRadioBattery += playerHandlers.UsingRadioBattery;
             Log.Info("FL-Main Plugin All Registered");
 
             base.OnEnabled();

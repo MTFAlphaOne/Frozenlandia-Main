@@ -95,12 +95,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\BuddyCommand.cs" />
     <Compile Include="Commands\WeaponDelivery.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigObjects\ItemSpawn.cs" />
     <Compile Include="ConfigObjects\SupplyDropConfigRandom.cs" />
     <Compile Include="Coroutines\SupplyDrop.cs" />
     <Compile Include="EventHandlers\MapHandlers.cs" />
+    <Compile Include="EventHandlers\PlayerHandlers.cs" />
     <Compile Include="EventHandlers\ServerHandlers.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
