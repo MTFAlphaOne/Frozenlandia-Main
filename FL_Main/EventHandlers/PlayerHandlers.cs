@@ -10,8 +10,16 @@ namespace FL_Main.EventHandlers
     {
         public void UsingRadioBattery(Player.UsingRadioBatteryEventArgs ev)
         {
-            ev.Radio.BatteryLevel = 100;
-            ev.Drain = 0f;
+            Config config = new Config();
+            if (config.UnlimitedRadioBattery)
+            {
+                ev.Radio.BatteryLevel = 100;
+                ev.Drain = 0f;
+            }
+            else
+            {
+                ev.Drain *= config.BatteryPowerLoss;
+            }
         }
     }
 }

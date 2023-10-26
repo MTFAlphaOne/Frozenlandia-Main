@@ -1,4 +1,5 @@
-﻿using Exiled.Events.Patches.Generic;
+﻿using Exiled.API.Features;
+using Exiled.Events.Patches.Generic;
 using FL_Main.Commands;
 using FL_Main.Coroutines;
 using MEC;
@@ -12,16 +13,24 @@ namespace FL_Main.EventHandlers
 {
     public class ServerHandlers
     {
+        private readonly Config config;
+
         public void OnRoundStarted()
         {
-            SupplyDrop supplyDrop = new SupplyDrop();
-            Timing.RunCoroutine(supplyDrop.MyCoroutine());
+            if (config.EnableSupplyDrops)
+            {
+                SupplyDrop supplyDrop = new SupplyDrop();
+                Timing.RunCoroutine(supplyDrop.MyCoroutine());
+            }
         }
-#pragma warning disable IDE0060 // Remove unused parameter
         public void OnRoundEnded(ServerArgs.RoundEndedEventArgs ev)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
-            Exiled.API.Features.Server.FriendlyFire = true;
+            
+            if (config.FriendlyFireAtEndOfRound)
+            {
+                Log.Debug($"end of round lead team was {ev.LeadingTeam} and will be restarting in {ev.TimeToRestart}");
+                Server.FriendlyFire = true;
+            }
         }
     }
 }

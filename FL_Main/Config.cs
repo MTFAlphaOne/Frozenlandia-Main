@@ -18,6 +18,8 @@ namespace FL_Main
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = false;
 
+
+
         [Description("Supply Drops")]
         public bool EnableSupplyDrops { get; set; } = true;
         [Description("How much time till the supply drop will happen. please put it in minutes not seconds")]
@@ -30,7 +32,7 @@ namespace FL_Main
             Max = 90,
         };
         [Description("What items can Spawn in and how many")]
-        public List<ItemSpawn >MTFItems { get; set; } = new List<ItemSpawn>
+        public List<ItemSpawn> MTFItems { get; set; } = new List<ItemSpawn>
         {
             new ItemSpawn
             {
@@ -57,13 +59,13 @@ namespace FL_Main
         {
             new ItemSpawn
             {
-                Item=ItemType.GunAK, 
+                Item=ItemType.GunAK,
                 MinAmmount=4,
                 MaxAmmount=5,
             },
             new ItemSpawn
             {
-                Item=ItemType.Ammo762x39, 
+                Item=ItemType.Ammo762x39,
                 MinAmmount=10,
                 MaxAmmount =15,
             },
@@ -98,5 +100,24 @@ namespace FL_Main
             new Vector3((float)-5.245,(float)991.649,(float)-38.366),
             new Vector3((float)-8.949, (float)991.649,(float)-43.551),
         };
+
+
+
+
+        [Description("Buddy System. curently doesn't work")]
+        public bool BuddySytemEnabled { get; set; } = false;
+
+
+
+        [Description("Friendly Fire at end of round")]
+        public bool FriendlyFireAtEndOfRound { get; set; } = true;
+        [Description("unlimited radio Battery")]
+        public bool UnlimitedRadioBattery { get; set; } = true;
+        [Description("Unless the Unlimited battery is false change this. how much mroe or less do you want it to drain")]
+        public int BatteryPowerLoss { get; set; } = 1;
+        [Description("Warhead Door open and lock")]
+        public bool WarheadDoorOpenAndLock { get; set; } = true;
+        [Description("MTF and Chaos entry flashing Lights")]
+        public bool FlashingLights { get; set; } = true;
     }
 }

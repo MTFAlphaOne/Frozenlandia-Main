@@ -104,6 +104,7 @@
     <Compile Include="EventHandlers\MapHandlers.cs" />
     <Compile Include="EventHandlers\PlayerHandlers.cs" />
     <Compile Include="EventHandlers\ServerHandlers.cs" />
+    <Compile Include="Hints\HintSystem.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
