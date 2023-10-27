@@ -13,19 +13,20 @@ namespace FL_Main.EventHandlers
 {
     public class ServerHandlers
     {
-        private readonly Config config;
 
         public void OnRoundStarted()
         {
+            Config config = new Config();
             if (config.EnableSupplyDrops)
             {
                 SupplyDrop supplyDrop = new SupplyDrop();
-                Timing.RunCoroutine(supplyDrop.MyCoroutine());
+                Plugin.singleton.supplyDropCoroutine = Timing.RunCoroutine(supplyDrop.MyCoroutine());
+
             }
         }
         public void OnRoundEnded(ServerArgs.RoundEndedEventArgs ev)
         {
-            
+            Config config = new Config();
             if (config.FriendlyFireAtEndOfRound)
             {
                 Log.Debug($"end of round lead team was {ev.LeadingTeam} and will be restarting in {ev.TimeToRestart}");

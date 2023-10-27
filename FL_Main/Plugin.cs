@@ -27,7 +27,7 @@ namespace FL_Main
 
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1,3,0);
+        public override Version Version { get; } = new Version(1,3,1);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 2, 1);
@@ -38,6 +38,11 @@ namespace FL_Main
         public Dictionary<string, string> buddies = new Dictionary<string, string>();
 
         public Dictionary<string, Exiled.API.Features.Player> buddyRequests = new Dictionary<string, Exiled.API.Features.Player>();
+
+        public bool WeaponDeliverySystemEnable = true;
+
+        public MEC.CoroutineHandle supplyDropCoroutine;
+
 
         public static Plugin singleton;
 
@@ -55,6 +60,9 @@ namespace FL_Main
 
             Player.UsingRadioBattery += playerHandlers.UsingRadioBattery;
             Log.Info("FL-Main Plugin All Registered");
+
+            WeaponDeliverySystemEnable = Config.EnableSupplyDrops;
+
 
             base.OnEnabled();
         }

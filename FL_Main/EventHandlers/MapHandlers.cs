@@ -9,9 +9,9 @@ using Random = System.Random;
 using Config = FL_Main.Config;
 public class MapHandlers
 {
-    private readonly Config config;
     public void OnDetonated()
     {
+        Config config = new Config();
         if (config.WarheadDoorOpenAndLock)
         {
             Door.LockAll(999999, DoorLockType.Warhead);
@@ -29,6 +29,7 @@ public class MapHandlers
 
     public void OnRespawningTeam(Exiled.Events.EventArgs.Server.RespawningTeamEventArgs ev)
     {
+        Config config = new Config();
         if (config.FlashingLights)
         {
             Log.Debug("Running Random Lights");

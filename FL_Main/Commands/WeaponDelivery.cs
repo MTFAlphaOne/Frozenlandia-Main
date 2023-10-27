@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MEC;
 namespace FL_Main.Commands
 {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
@@ -21,6 +21,7 @@ namespace FL_Main.Commands
         public override string Description { get; } = "This will Force a Weapon Delivery. Must be 'chaos' or 'mtf'";
 
         public override void LoadGeneratedCommands() { }
+
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -45,15 +46,43 @@ namespace FL_Main.Commands
                             response = "Chaos Weapon Delivery iniiated";
                             return true;
 
+                        case "disable":
+                           
+                            Plugin.singleton.WeaponDeliverySystemEnable = false;
+                            Timing.KillCoroutines(Plugin.singleton.supplyDropCoroutine);
+                            response = "Weapons will now stop";
+                            return true;
+                        case "enable":
+                            Plugin.singleton.WeaponDeliverySystemEnable = true;
+                            Plugin.singleton.supplyDropCoroutine = Timing.RunCoroutine(supplyDrop.MyCoroutine());
+                            response = "Weapons will now continue";
+                            return true;
+
                         default:
-                            response = "Invalid argument. Usage: WeaponDelivery mtf/chaos";
-                            return false;
+                            response = string.Empty;
+                            if (Plugin.singleton.WeaponDeliverySystemEnable)
+                            {
+                                response = "Current Status of Weapons Delivery: Enabled. Usage: WeaponDelivery mtf/chaos or disable/enable";
+                            }
+                            else
+                            {
+                                response = $" Current Status of Weapons Delivery Disabled. Usage: WeaponDelivery mtf/chaos or disable/enable";
+                            }
+                            return true;
                     }
                 }
                 else
                 {
-                    response = "Missing argument. Usage: WeaponDelivery mtf/chaos";
-                    return false;
+                    response = string.Empty;
+                    if (Plugin.singleton.WeaponDeliverySystemEnable)
+                    {
+                        response = "Current Status of Weapons Delivery: Enabled. Usage: WeaponDelivery mtf/chaos or disable/enable";
+                    }
+                    else
+                    {
+                        response = $" Current Status of Weapons Delivery Disabled. Usage: WeaponDelivery mtf/chaos or disable/enable";
+                    }
+                    return true;
                 }
             }
             catch (Exception ex)
