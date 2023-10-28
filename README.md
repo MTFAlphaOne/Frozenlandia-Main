@@ -21,22 +21,47 @@ This plugin enhances the gaming experience in SCP: Secret Laboratory by introduc
 
 To install this plugin, follow these steps:
 
-1. Download the plugin files from [GitHub link].
-2. Place the plugin folder in the "plugins" directory of your SCP: Secret Laboratory server.
-3. Ensure that the plugin is enabled in your server configuration.
+1. Download the latest release from the [Releases](https://github.com/Dashtiss/FL_Main/releases) page.
+2. Place the downloaded `.dll` file in your server's `Plugins` folder.
+3. Configure the plugin according to your preferences (if necessary).
+4. Start your server.
 
 ## Configuration
 
-You can configure the plugin's settings by modifying the configuration file located in the plugin folder. Refer to the plugin documentation for detailed configuration options.
-
-## Feedback
-
-Your feedback is essential to improving this plugin. If you encounter any issues or have suggestions for enhancements, please report them on the [GitHub repository](https://github.com/yourpluginrepository).
-
-## License
-
-This plugin is distributed under the [License Name] license. Refer to the `LICENSE` file in the plugin folder for more details.
+| Name                           | Description                                     | Variable Type           | Default                   |
+|--------------------------------|-------------------------------------------------|-------------------------|---------------------------|
+| **Main Plugin Settings**       |                                                 |                         |                           |
+| IsEnabled                       | Enable the main plugin                         | boolean                 | true                      |
+| Debug                           | Enable debug mode                              | boolean                 | false                     |
+| **Supply Drops**               |                                                 |                         |                           |
+| EnableSupplyDrops               | Enable supply drops                            | boolean                 | true                      |
+| SupplyDropMinutes               | Time until supply drop (minutes)               | float                   | 6.0                       |
+| SupplyDropConfigs               | Supply drop time randomization                 | SupplyDropConfigRandom  | IsRandomTimeAllowed: true, Min: 30, Max: 90 |
+| MTFItems                        | Items during MTF delivery                      | List<ItemSpawn>         | See code                  |
+| ChaosItems                      | Items during Chaos delivery                    | List<ItemSpawn>         | See code                  |
+| **CASSIE Announcements**       |                                                 |                         |                           |
+| MTFDelCassie                    | CASSIE announcement for MTF delivery          | string                  | "jam_012_0 yield_01 arrival of mobile task force materials has entered the facility area" |
+| MTFDelCassieSub                 | CASSIE subtitle for MTF delivery               | string                  | "Arrival of MTF Materials has arrived" |
+| ChaosDelCassie                  | CASSIE announcement for Chaos delivery        | string                  | "jam_012_0 yield_01 arrival of chaos insurgency materials has entered the facility area" |
+| ChaosDelCassieSub               | CASSIE subtitle for Chaos delivery             | string                  | "Arrival of Chaos Insurgency Materials has arrived" |
+| **Spawn Positions**            |                                                 |                         |                           |
+| MTFSpawnPositions                | Spawn positions for MTF                        | List<Vector3>           | See code                  |
+| ChaosSpawnPositions             | Spawn positions for Chaos                      | List<Vector3>           | See code                  |
+| **Buddy System**               |                                                 |                         |                           |
+| BuddySytemEnabled               | Enable the buddy system (non-functional)       | boolean                 | true                      |
+| SpawnAbleRoles                  | Roles for buddies to spawn as                 | List<RoleTypeId>        | ClassD, Scientist, FacilityGuard |
+| SCPNeeded                       | SCP roles for buddies when SCP is needed      | List<RoleTypeId>        | Scp173, Scp106, Scp939     |
+| **End of Round Settings**     |                                                 |                         |                           |
+| FriendlyFireAtEndOfRound       | Enable friendly fire at the end of the round  | boolean                 | true                      |
+| **Radio Battery Settings**    |                                                 |                         |                           |
+| UnlimitedRadioBattery           | Unlimited radio battery                        | boolean                 | true                      |
+| BatteryPowerLoss                | Radio battery power loss adjustment            | integer                 | 1                         |
+| **Warhead Door**               |                                                 |                         |                           |
+| WarheadDoorOpenAndLock          | Control warhead door open and lock behavior   | boolean                 | true                      |
+| **Entry Lights**              |                                                 |                         |                           |
+| FlashingLights                  | MTF and Chaos entry flashing lights            | boolean                 | true                      |
 
 ## Credits
 
-Special thanks to the developers and contributors who made this plugin possible.
+This plugin if for the FROZENLANDIA server ([Discord](https://discord.gg/UBuY8e2W)). This is made by Dashtiss
+
