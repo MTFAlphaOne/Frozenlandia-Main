@@ -14,8 +14,8 @@ This plugin enhances the gaming experience in SCP: Secret Laboratory by introduc
 | Buddy System            | Buddysystem: Easily send friend requests and play cooperatively.    | ✔️ Done               |
 | Friendly Fire           | At the end of the round, Friendly Fire should activate.             | ✔️ Done               |
 | Endless Radio Battery   | Radios have endless battery life for constant communication.        | ✔️ Done               |
-| Random Elevator Speed   | Elevators go up/down faster or slower, always completely randomly.  | In Progress           |
-| Weapons Deliveries      | Weapons and ammunition deliveries for Chaos/MTF every 6 minutes.    | In Progress           |
+| Random Elevator Speed   | Elevators go up/down faster or slower, always completely randomly.  | ✔️ Done               |
+| Weapons Deliveries      | Weapons and ammunition deliveries for Chaos/MTF every 6 minutes.    | ✔️ Done               |
 
 ## Installation
 
