@@ -15,15 +15,23 @@ namespace FL_Main.Coroutines
         private readonly Config config = new Config();
         private int MTFChance = 50;
         private int ChaosChance = 50;
-
-        readonly System.Random random;
+        private float time = 0;
         public IEnumerator<float> MyCoroutine()
         {
-            float time = config.SupplyDropMinutes * 60 + GetRandomFloat(
-                config.SupplyDropConfigs.Min,
+            System.Random random = new System.Random();
 
-                config.SupplyDropConfigs.Max
-                                            );
+            if (config.SupplyDropConfigs.IsRandomTimeAllowed) 
+            {
+                time = config.SupplyDropMinutes * 60 + GetRandomFloat(
+                    config.SupplyDropConfigs.Min,
+
+                    config.SupplyDropConfigs.Max
+                                                );
+            }
+            else
+            {
+                 time = config.SupplyDropMinutes * 60;
+            }
             yield return Timing.WaitForSeconds(config.SupplyDropMinutes * 60 + time);
             int Chance = random.Next(100);
             int Team = random.Next(0, 1);    // 0 is mtf \ 1 is chaos
@@ -62,20 +70,21 @@ namespace FL_Main.Coroutines
         }
         private float GetRandomFloat(float min, float max)
         {
+            System.Random random = new System.Random();
             if (config.SupplyDropConfigs.IsRandomTimeAllowed)
             {
                 return (float)(random.NextDouble() * (max - min) + min);
             }
             return 0f;
         }
-        public void MTFHelp()
+        public IEnumerable<float> MTFHelp()
         {
+            System.Random random = new System.Random();
             Respawn.SummonNtfChopper();
-            Timing.WaitForSeconds(15);
+            yield return Timing.WaitForSeconds(15);
             Cassie.MessageTranslated(config.MTFDelCassie, config.MTFDelCassieSub);
             foreach (ItemSpawn itemSpawn in config.MTFItems)
             {
-                System.Random random = new System.Random();
                 int id = random.Next(config.MTFSpawnPostitions.Count());
                 Vector3 vector = config.MTFSpawnPostitions[id];
                 Item item = Item.Create(itemSpawn.Item);
@@ -85,15 +94,16 @@ namespace FL_Main.Coroutines
                     item.CreatePickup(vector);
                 }
             }
+            yield break;
         }
-        public void ChaosHelp()
+        public IEnumerable<float> ChaosHelp()
         {
+            System.Random random = new System.Random();
             Respawn.SummonChaosInsurgencyVan();
-            Timing.WaitForSeconds(13);
+            yield return Timing.WaitForSeconds(15);
             Cassie.MessageTranslated(config.ChaosDelCassie, config.ChaosDelCassieSub);
             foreach (ItemSpawn itemSpawn in config.ChaosItems)
             {
-                System.Random random = new System.Random();
                 int id = random.Next(config.ChaosSpawnPositions.Count());
                 Vector3 vector = config.ChaosSpawnPositions[id];
                 Item item = Item.Create(itemSpawn.Item);
@@ -103,6 +113,7 @@ namespace FL_Main.Coroutines
                     item.CreatePickup(vector);
                 }
             }
+            yield break;
         }
     }
 }

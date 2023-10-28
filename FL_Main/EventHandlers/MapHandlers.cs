@@ -37,29 +37,29 @@ public class MapHandlers
             if (ev.NextKnownTeam == Respawning.SpawnableTeamType.NineTailedFox)
             {
                 Log.Debug("Running MTF Lights");
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < random.Next(10); i++)
                 {
                     foreach (Room room in Room.List)
                     {
                         room.Color = Color.blue;
                     }
-                    Timing.WaitForSeconds((float)(random.NextDouble() * (0.5 - 0.2) + 0.2)); // Replace random. with random.Next(minValue, maxValue)
+                    Timing.WaitForSeconds((float)random.NextDouble());
                     foreach (Room room in Room.List)
                     {
                         room.Color = Color.clear;
                     }
                 }
             }
-            else if (ev.NextKnownTeam == Respawning.SpawnableTeamType.ChaosInsurgency)
+            else if (ev.NextKnownTeam == Respawning.SpawnableTeamType.NineTailedFox)
             {
                 Log.Debug("Running Chaos Lights");
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < random.Next(10); i++)
                 {
                     foreach (Room room in Room.List)
                     {
                         room.Color = Color.green;
                     }
-                    Timing.WaitForSeconds((float)(random.NextDouble() * (0.5 - 0.2) + 0.2)); // Replace random. with random.Next(minValue, maxValue)
+                    Timing.WaitForSeconds((float)random.NextDouble());
                     foreach (Room room in Room.List)
                     {
                         room.Color = Color.clear;

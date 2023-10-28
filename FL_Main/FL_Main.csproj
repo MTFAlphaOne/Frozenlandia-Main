@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\API.cs" />
     <Compile Include="Commands\BuddyCommand.cs" />
     <Compile Include="Commands\TestHint.cs" />
     <Compile Include="Commands\WeaponDelivery.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Coroutines\SupplyDrop.cs" />
     <Compile Include="EventHandlers\MapHandlers.cs" />
     <Compile Include="EventHandlers\PlayerHandlers.cs" />
+    <Compile Include="EventHandlers\SCPHandlers.cs" />
     <Compile Include="EventHandlers\ServerHandlers.cs" />
     <Compile Include="Hints\HintSystem.cs" />
     <Compile Include="Plugin.cs" />

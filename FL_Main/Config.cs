@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FL_Main.ConfigObjects;
 using UnityEngine;
+using PlayerRoles;
 
 namespace FL_Main
 {
@@ -105,7 +106,17 @@ namespace FL_Main
 
 
         [Description("Buddy System. curently doesn't work")]
-        public bool BuddySytemEnabled { get; set; } = false;
+        public bool BuddySytemEnabled { get; set; } = true;
+        [Description("What roles can buddys spawn in as, please no SCP Roles")]
+        public List<RoleTypeId> SpawnAbleRoles { get; set; } = new List<RoleTypeId>
+        {
+            RoleTypeId.ClassD,
+            RoleTypeId.Scientist,
+            RoleTypeId.FacilityGuard
+        };
+        [Description("if a scp is needed, what scp is used")]
+        public List<RoleTypeId> SCPNeeded { get; set; } = new List<RoleTypeId> { RoleTypeId.Scp173, RoleTypeId.Scp106, RoleTypeId.Scp939};
+
 
 
 

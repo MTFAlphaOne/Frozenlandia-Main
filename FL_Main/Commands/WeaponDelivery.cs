@@ -25,6 +25,13 @@ namespace FL_Main.Commands
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            Config config = new Config();
+            if (!config.EnableSupplyDrops)
+            {
+                response = "Supply drops are disabled in config";
+                return true;
+
+            }
             try
             {
                 SupplyDrop supplyDrop = new SupplyDrop();
@@ -90,7 +97,7 @@ namespace FL_Main.Commands
                 
                 Log.Warn($"Error User {sender} Ran Command WeaponDelivery with args {arguments}. Error: {ex}");
                 response = "A Error Occured. look at your console and talk to @Dashtiss about this";
-                return false;
+                return true;
             }
         }
     }

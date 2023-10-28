@@ -25,7 +25,7 @@ namespace FL_Main.Commands
             string test = string.Empty;
             foreach (string arg in arguments)
             {
-                test += arg.ToString();
+                test += arg.ToString() + " ";
             }
             hintSystem.ShowHint(test, player);
             response = test;

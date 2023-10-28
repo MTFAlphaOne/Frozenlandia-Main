@@ -10,7 +10,7 @@ namespace FL_Main.Hints
 {
     public class HintSystem
     {
-        public void ShowHint(string hint, Player player, int duration=3)
+        public void ShowHint(string hint, Player player, float duration=3)
         {
             player.ShowHint(hint, duration);
         }

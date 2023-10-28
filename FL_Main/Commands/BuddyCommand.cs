@@ -32,6 +32,11 @@ namespace FL_Main.Commands
         {
             if (_enabled && _config.BuddySytemEnabled)
             {
+                if (Exiled.API.Features.Round.IsStarted)
+                {
+                    response = "Round has already started";
+                    return true;
+                }
                 response = "";
                 string[] args = arguments.ToArray();
                 if (sender is PlayerCommandSender)
