@@ -9,8 +9,7 @@ This plugin enhances the gaming experience in SCP: Secret Laboratory by introduc
 | Feature                 | What It Does                                                          | Implementation Status |
 |-------------------------|-----------------------------------------------------------------------|-----------------------|
 | Explosive Doors and Gates| When the Warhead explodes, all Doors and Gates explode with it.     | ✔️ Done               |
-| Flickering Lights       | As soon as MTF/Chaos spawns, every light in the facility should     | ✔️ Done               |
-|                         | flicker green or blue for 3 seconds.                                  |                       |
+| Flickering Lights       | As soon as MTF/Chaos spawns, every light in the facility should flicker green or blue for 3 seconds.     | ✔️ Done               |
 | Kills and Damage Display| Kills and damage should be displayed for the SCPs.                  | In Progress           |
 | Buddy System            | Buddysystem: Easily send friend requests and play cooperatively.    | ✔️ Done               |
 | Friendly Fire           | At the end of the round, Friendly Fire should activate.             | ✔️ Done               |
