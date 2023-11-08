@@ -2,20 +2,22 @@
 
 ## Overview
 
-This plugin enhances the gaming experience in SCP: Secret Laboratory by introducing a variety of unique features. This README will provide a comprehensive overview of the plugin and its functionalities. Please note that some features are still under development.
+The FL_Main plugin is designed to enhance the gameplay experience in SCP: Secret Laboratory by introducing a wide range of unique and exciting features. From explosive doors and flickering lights to buddy systems and weapons deliveries, this plugin aims to create an immersive and dynamic gaming environment. In addition, FL_Main utilizes LiteDB to manage the in-game currency system, known as "FrozenCoins." Whether you're a server admin or a player, FL_Main adds new dimensions to your SCP adventures. Please note that some features are still in development, so stay tuned for updates.
+
 
 ## Features
 
-| Feature                 | What It Does                                                          | Implementation Status |
-|-------------------------|-----------------------------------------------------------------------|-----------------------|
-| Explosive Doors and Gates| When the Warhead explodes, all Doors and Gates explode with it.     | ✔️ Done               |
-| Flickering Lights       | As soon as MTF/Chaos spawns, every light in the facility should flicker green or blue for 3 seconds.     | ✔️ Done               |
-| Kills and Damage Display| Kills and damage should be displayed for the SCPs.                  | In Progress           |
-| Buddy System            | Buddysystem: Easily send friend requests and play cooperatively.    | ✔️ Done               |
-| Friendly Fire           | At the end of the round, Friendly Fire should activate.             | ✔️ Done               |
-| Endless Radio Battery   | Radios have endless battery life for constant communication.        | ✔️ Done               |
-| Random Elevator Speed   | Elevators go up/down faster or slower, always completely randomly.  | ✔️ Done               |
-| Weapons Deliveries      | Weapons and ammunition deliveries for Chaos/MTF every 6 minutes.    | ✔️ Done               |
+| Feature                 | What It Does                                                          | Implementation Status | Tested |
+|-------------------------|-----------------------------------------------------------------------|-----------------------|--------|
+| Explosive Doors and Gates| When the Warhead explodes, all Doors and Gates explode with it.     | ✔️ Done               | ✔️      |
+| Flickering Lights       | As soon as MTF/Chaos spawns, every light in the facility should flicker green or blue for 3 seconds.     | ✔️ Done               | ❌      |
+| Kills and Damage Display| Kills and damage should be displayed for the SCPs.                  | In Progress           | ❌      |
+| Buddy System            | Buddysystem: Easily send friend requests and play cooperatively.    | ✔️ Done               | ❌      |
+| Friendly Fire           | At the end of the round, Friendly Fire should activate.             | ✔️ Done               | ✔️      |
+| Endless Radio Battery   | Radios have endless battery life for constant communication.        | ✔️ Done               | ✔️      |
+| Random Elevator Speed   | Elevators go up/down faster or slower, always completely randomly.  | ✔️ Done               | ✔️      |
+| Weapons Deliveries      | Weapons and ammunition deliveries for Chaos/MTF every 6 minutes.    | ✔️ Done               | ✔️      |
+
 
 ## Installation
 
@@ -58,8 +60,6 @@ To install this plugin, follow these steps:
 | BatteryPowerLoss                | Radio battery power loss adjustment            | integer                 | 1                         |
 | **Warhead Door**               |                                                 |                         |                           |
 | WarheadDoorOpenAndLock          | Control warhead door open and lock behavior   | boolean                 | true                      |
-| **Entry Lights**              |                                                 |                         |                           |
-| FlashingLights                  | MTF and Chaos entry flashing lights            | boolean                 | true                      |
 
 ## Credits
 
