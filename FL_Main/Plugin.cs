@@ -60,7 +60,7 @@ namespace FL_Main
         public Dictionary<Exiled.API.Features.Player, int> Coins = new Dictionary<Exiled.API.Features.Player, int>();
 
 
-        public string DatabasePath
+        public string DatabasePath;
 
         public override void OnEnabled()
         {
