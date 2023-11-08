@@ -1,19 +1,21 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
+using FL_Main.ConfigObjects;
+using LiteDB;
 using PlayerRoles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Player = Exiled.Events.EventArgs.Player;
 namespace FL_Main.EventHandlers
 {
     public class PlayerHandlers
     {
-        public void UsingRadioBattery(Player.UsingRadioBatteryEventArgs ev)
+        private readonly Config config;
+        public void UsingRadioBattery(UsingRadioBatteryEventArgs ev)
         {
-            Config config = new Config();
+            
             if (config.UnlimitedRadioBattery)
             {
                 ev.Radio.BatteryLevel = 100;
@@ -48,6 +50,27 @@ namespace FL_Main.EventHandlers
             float time = ev.Lift.AnimationTime;
             time += (float)random.NextDouble() * (maxValue - minValue) + minValue;
             ev.Lift.AnimationTime = time;
+        }
+
+        public void OnVerified(VerifiedEventArgs ev)
+        {
+            if (ev.Player == null) { return; }
+            using (var db = new LiteDatabase(Plugin.singleton.DatabasePath))
+            {
+                var playerCoinsCollection = db.GetCollection<Dictionary<Player, int>>("PlayerCoins");
+                foreach (var playerCoins in playerCoinsCollection.FindAll())
+                {
+                    if (playerCoins.ContainsKey(ev.Player))
+                    {
+                        // Update the dictionary with the loaded data
+                        Plugin.singleton.Coins[ev.Player] = playerCoins[ev.Player];
+                    }
+                    else
+                    {
+                        Plugin.singleton.Coins.Add(ev.Player, 0);
+                    }
+                }
+            }
         }
     }
 }

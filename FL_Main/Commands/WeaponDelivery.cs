@@ -22,10 +22,10 @@ namespace FL_Main.Commands
 
         public override void LoadGeneratedCommands() { }
 
-
+        private readonly Config config;
+        private SupplyDrop supplyDrop;
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Config config = new Config();
             if (!config.EnableSupplyDrops)
             {
                 response = "Supply drops are disabled in config";
@@ -34,7 +34,6 @@ namespace FL_Main.Commands
             }
             try
             {
-                SupplyDrop supplyDrop = new SupplyDrop();
                 // Check if there is at least one argument
                 if (arguments.Count > 0)
                 {

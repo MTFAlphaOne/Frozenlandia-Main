@@ -8,13 +8,15 @@ using Player = Exiled.Events.Handlers.Player;
 using FL_Main.Commands;
 using System.Collections.Generic;
 using MEC;
+using FL_Main.Coroutines;
+using LiteDB;
+using System.IO;
+using FL_Main.ConfigObjects;
 
 namespace FL_Main
 {
     public class Plugin : Plugin<Config>
     {
-        private Config _config;
-
         /// <inheritdoc/>
         public override string Name { get; } = "FL Main Plugin";
 
@@ -45,7 +47,7 @@ namespace FL_Main
 
         public Dictionary<string, Exiled.API.Features.Player> buddyRequests = new Dictionary<string, Exiled.API.Features.Player>();
 
-        public bool WeaponDeliverySystemEnable { get; set; } = true;
+        public bool WeaponDeliverySystemEnable = false;
 
         public CoroutineHandle supplyDropCoroutine;
 
@@ -55,7 +57,10 @@ namespace FL_Main
 
         public bool DevBuild = true;
 
+        public Dictionary<Exiled.API.Features.Player, int> Coins = new Dictionary<Exiled.API.Features.Player, int>();
 
+
+        public string DatabasePath
 
         public override void OnEnabled()
         {
@@ -63,7 +68,7 @@ namespace FL_Main
             MapHandlers MapHandlers = new MapHandlers();
             ServerHandlers serverHandlers = new ServerHandlers();
             PlayerHandlers playerHandlers = new PlayerHandlers();
-            SCPHandlers SCPHandlers = new SCPHandlers();
+            BuddyHandler buddyHandler = new BuddyHandler(); 
 
             Server.RespawningTeam += MapHandlers.OnRespawningTeam;
             Warhead.Detonated += MapHandlers.OnDetonated;
@@ -75,14 +80,16 @@ namespace FL_Main
             Player.InteractingElevator += playerHandlers.InteractingWithElevator;
             Log.Info("FL-Main Plugin All Registered");
 
+            Server.RoundStarted += buddyHandler.OnRoundStart;
+            
+            singleton.WeaponDeliverySystemEnable = Config.EnableSupplyDrops;
             // Player.Hurting += SCPHandlers.OnHurting;
             // Player.ChangingRole += playerHandlers.ChangeRole;
             // Timing.RunCoroutine((IEnumerator<float>)SCPHandlers.SCPHints());
 
 
-            WeaponDeliverySystemEnable = Config.EnableSupplyDrops;
-
-
+            Directory.CreateDirectory(Path.GetDirectoryName(Config.SavePath));
+           
             // Gets all the stuff and sees if it is a dev build
 
             if (DevBuild)
@@ -90,6 +97,20 @@ namespace FL_Main
                 Log.Warn("This is a dev Build of FL-Main");
             }
 
+            DatabasePath = $"{Config.SavePath}/{Config.DatabaseName}";
+            using (var db = new LiteDatabase(DatabasePath))
+            {
+                var playerCoinsCollection = db.GetCollection<PlayerCoin>("PlayerCoins");
+
+                // Clear the existing data in the dictionary
+                Plugin.singleton.Coins.Clear();
+
+                foreach (var playerCoin in playerCoinsCollection.FindAll())
+                {
+                    // Populate the Plugin.singleton.Coins dictionary with data from the database
+                    Plugin.singleton.Coins[playerCoin.Player] = playerCoin.CoinAmount;
+                }
+            }
 
             base.OnEnabled();
         }
