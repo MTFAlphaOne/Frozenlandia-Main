@@ -17,6 +17,7 @@ The FL_Main plugin is designed to enhance the gameplay experience in SCP: Secret
 | Endless Radio Battery   | Radios have endless battery life for constant communication.        | ✔️ Done               | ✔️      |
 | Random Elevator Speed   | Elevators go up/down faster or slower, always completely randomly.  | ✔️ Done               | ✔️      |
 | Weapons Deliveries      | Weapons and ammunition deliveries for Chaos/MTF every 6 minutes.    | ✔️ Done               | ✔️      |
+| Coin Database           | This is the database that store all the coins that the server does  | ✔️ Done               | ❌      |
 
 
 ## Installation
