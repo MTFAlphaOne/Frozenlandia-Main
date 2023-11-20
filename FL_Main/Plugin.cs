@@ -87,8 +87,8 @@ namespace FL_Main
             // Player.ChangingRole += playerHandlers.ChangeRole;
             // Timing.RunCoroutine((IEnumerator<float>)SCPHandlers.SCPHints());
 
-
-            Directory.CreateDirectory(Path.GetDirectoryName(Config.SavePath));
+            Log.Warn($"{Config.SavePath}");
+            Directory.CreateDirectory(Config.SavePath);
            
             // Gets all the stuff and sees if it is a dev build
 
@@ -98,6 +98,7 @@ namespace FL_Main
             }
 
             DatabasePath = $"{Config.SavePath}/{Config.DatabaseName}";
+
             using (var db = new LiteDatabase(DatabasePath))
             {
                 var playerCoinsCollection = db.GetCollection<PlayerCoin>("PlayerCoins");

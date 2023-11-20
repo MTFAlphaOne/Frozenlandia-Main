@@ -162,9 +162,32 @@ namespace FL_Main
 
 
         [Description("save path for DataBase")]
-        public string SavePath { get; set; } = Path.Combine(Paths.Config, "FL-Main");
+        public string SavePath { get; set; } = Path.Combine(Paths.Configs, "FL-Main");
         [Description("DataBase Name")]
         public string DatabaseName { get; set; } = "FrozenCoins.db";
 
+
+
+        [Description("Commands\nWhat will the .scps command will return")]
+        public string SCPReturn { get; set; } = @"• SCP035: Es spawnt ein verfluchtes Item, finde es, um es zu werden! 2500HP (verliert jede Sekunde 10HP). Du kannst Leben dazu bekommen, indem du andere mit deine Aura von 4Metern tötest. Die Leben, die du ihnen entziehst, bekommst du gutgeschrieben!
+
+• SCP999: Spawnt am Anfang eventuell, kann dich wenn du in seiner Nähe bist, heilen.
+
+• SCP-1048: Spawnt am Anfang eventuell, kann mit seinem Geschrei dich taub machen und dir stetig Schaden dadurch geben!
+
+• SCP-575: Die ewige Dunkelheit, kann zu 20% SCP-106 ersetzen, und ist unsichtbar. Man kann ihn nur sehen, wenn er mit einer Taschenlampe angeleuchtet wird.
+
+• SCP-890: Spawnt ab 15 Spielern zu 100%, hat die Fähigkeit, Türen oder Gates zu öffnen, kann jedoch diese aber auch verschließen, wenn man Pech hat!
+
+• SCP-966: Sind unsichtbare, raubtierhafte Wesen, die Menschen im Schlaf angreifen. Sie sind durch Taschenlampen und Licht sichtbar und verursachen erheblichen Schlafentzug, was zu psychologischem Stress und potenziellem Tod führen kann.
+
+• SCP-457: auch der ""Fireman"" genannt, ist eine menschliche Gestalt, welche nur brennt. Sie kann Feuerbälle schießen und gibt dir großen Schaden wenn du in seiner Nähe stehst. Die Cyro-Granate ist ein wirksames Mittel gegen ihn!
+";
+        [Description("What .items will return")]
+        public string ItemReturn { get; set; } = @"• Gas-Granate: Die GasGrante ist die stärkste Grante im Arsenal der Site-19. Sobald sie explodiert, kommt es zu einer radioaktiven Zone, die für 20 Sekunden nicht betreten werden kann. Solltest du dich doch entscheiden, reinzugehen, kein Problem, wirst dann erst beim nächsten Respawn wieder lebendig!
+
+• Cyro-Granate: Eine weitentwickelte Granate, welche beim Aufprall ""eiskalte"" Luft freisetzt. Du wirst schneller gefrieren als du selbst schauen kannst.. Sehr sinnvoll gegen SCP-457
+
+• Mediziner-Waffe: Die medizinische Waffe, äußerlich verwechselbar mit dem Revolver, lässt dich durch das Feuern auf Zombies, diese zurück zu verwandeln und von SCP008 zu heilen!";
     }
-}  
+}

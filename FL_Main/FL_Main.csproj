@@ -103,7 +103,8 @@
     <Compile Include="API\API.cs" />
     <Compile Include="Commands\BuddyCommand.cs" />
     <Compile Include="Commands\ListDataBase.cs" />
-    <Compile Include="Commands\TestHint.cs" />
+    <Compile Include="Commands\ItemLists.cs" />
+    <Compile Include="Commands\SCPLISTS.cs" />
     <Compile Include="Commands\WeaponDelivery.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigObjects\ItemSpawn.cs" />

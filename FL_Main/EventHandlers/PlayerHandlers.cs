@@ -2,9 +2,11 @@
 using Exiled.Events.EventArgs.Player;
 using FL_Main.ConfigObjects;
 using LiteDB;
+using MEC;
 using PlayerRoles;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,12 +46,23 @@ namespace FL_Main.EventHandlers
         }*/
         public void InteractingWithElevator(InteractingElevatorEventArgs ev)
         {
+            Timing.RunCoroutine(Elevator(ev));
+        }
+        private IEnumerator<float> Elevator(InteractingElevatorEventArgs ev)
+        {
             Random random = new Random();
-            float minValue = -1.5f;
-            float maxValue = 1.5f;
+            float minValue = -1f;
+            float maxValue = 1f;
             float time = ev.Lift.AnimationTime;
-            time += (float)random.NextDouble() * (maxValue - minValue) + minValue;
+            float Randflt = (float)(random.NextDouble() * (maxValue - minValue) + minValue);
+            time += Randflt;
+            yield return Timing.WaitForSeconds(ev.Lift.DoorCloseTime);
             ev.Lift.AnimationTime = time;
+            yield return Timing.WaitForSeconds(time + (-1 * Randflt));
+            ev.Lift.AnimationTime = time + (-1 * Randflt);
+            yield break;
+
+
         }
 
         public void OnVerified(VerifiedEventArgs ev)
