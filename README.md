@@ -18,6 +18,7 @@ The FL_Main plugin is designed to enhance the gameplay experience in SCP: Secret
 | Random Elevator Speed   | Elevators go up/down faster or slower, always completely randomly.  | ✔️ Done               | ✔️      |
 | Weapons Deliveries      | Weapons and ammunition deliveries for Chaos/MTF every 6 minutes.    | ✔️ Done               | ✔️      |
 | Coin Database           | This is the database that store all the coins that the server does  | ✔️ Done               | ❌      |
+| Custom Things Commands  | These commands will list the Custom SCP. Items and Rooms            | ✔️ Done               | ❌      |
 
 
 ## Installation
@@ -61,6 +62,10 @@ To install this plugin, follow these steps:
 | BatteryPowerLoss                | Radio battery power loss adjustment            | integer                 | 1                         |
 | **Warhead Door**               |                                                 |                         |                           |
 | WarheadDoorOpenAndLock          | Control warhead door open and lock behavior   | boolean                 | true                      |
+| **Commands**                   |                                                   |                     |                           |
+| SCPReturn                  | Commands - .scps return description            | string                  | See code                  |
+| ItemReturn                | .items command return description              | string                  | See code                  |
+
 
 ## Credits
 
