@@ -68,6 +68,24 @@ namespace FL_Main.EventHandlers
 
                 // Insert the entire list into the LiteDB collection
                 playerCoinsCollection.InsertBulk(playerCoinList);
+
+
+                var playerTimeCollection = db.GetCollection<Dictionary<Player, float>>("PlayerTime");
+
+                // Clear the existing data in the collection
+                playerTimeCollection.DeleteAll();
+
+                // Create a list to store all the PlayerCoins
+                var playerTimeList = new Dictionary<Player, float>();
+
+                foreach (var entry in Plugin.singleton.PlayerTime)
+                {
+                    // Add the PlayerCoin to the list
+                    playerTimeList.Add(entry.Key, entry.Value);
+                }
+
+                // Insert the entire list into the LiteDB collection
+                playerTimeCollection.InsertBulk((IEnumerable<Dictionary<Player, float>>)playerTimeList);
             }
         }
     }

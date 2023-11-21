@@ -30,10 +30,10 @@ namespace FL_Main
 
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1, 6, 0);
+        public override Version Version { get; } = new Version(1, 7, 1);
 
         /// <inheritdoc/>
-        public override Version RequiredExiledVersion { get; } = new Version(8, 2, 1);
+        public override Version RequiredExiledVersion { get; } = new Version(8, 4, 0);
 
 
         // all the variables to make this plugin work. ahhhh
@@ -70,8 +70,8 @@ namespace FL_Main
             MapHandlers MapHandlers = new MapHandlers();
             ServerHandlers serverHandlers = new ServerHandlers();
             PlayerHandlers playerHandlers = new PlayerHandlers();
-            BuddyHandler buddyHandler = new BuddyHandler(); 
-
+            BuddyHandler buddyHandler = new BuddyHandler();
+            Main mainCoroutine = new Main();
             Server.RespawningTeam += MapHandlers.OnRespawningTeam;
             Warhead.Detonated += MapHandlers.OnDetonated;
 
@@ -83,7 +83,7 @@ namespace FL_Main
             Log.Info("FL-Main Plugin All Registered");
 
             Server.RoundStarted += buddyHandler.OnRoundStart;
-            
+            Timing.RunCoroutine(mainCoroutine.PlayerTime());
             singleton.WeaponDeliverySystemEnable = Config.EnableSupplyDrops;
             // Player.Hurting += SCPHandlers.OnHurting;
             // Player.ChangingRole += playerHandlers.ChangeRole;
@@ -91,6 +91,7 @@ namespace FL_Main
 
             Log.Warn($"{Config.SavePath}");
             Directory.CreateDirectory(Config.SavePath);
+
            
             // Gets all the stuff and sees if it is a dev build
 

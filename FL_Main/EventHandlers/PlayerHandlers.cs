@@ -68,21 +68,18 @@ namespace FL_Main.EventHandlers
         public void OnVerified(VerifiedEventArgs ev)
         {
             if (ev.Player == null) { return; }
-            using (var db = new LiteDatabase(Plugin.singleton.DatabasePath))
+            if (Plugin.singleton.Coins.ContainsKey(ev.Player))
             {
-                var playerCoinsCollection = db.GetCollection<Dictionary<Player, int>>("PlayerCoins");
-                foreach (var playerCoins in playerCoinsCollection.FindAll())
-                {
-                    if (playerCoins.ContainsKey(ev.Player))
-                    {
-                        // Update the dictionary with the loaded data
-                        Plugin.singleton.Coins[ev.Player] = playerCoins[ev.Player];
-                    }
-                    else
-                    {
-                        Plugin.singleton.Coins.Add(ev.Player, 0);
-                    }
-                }
+                // Update the dictionary with the loaded data
+                Plugin.singleton.Coins[ev.Player] = Plugin.singleton.Coins[ev.Player];
+            }
+            else
+            {
+                Plugin.singleton.Coins.Add(ev.Player, 0);
+            }
+            if (!Plugin.singleton.PlayerTime.ContainsKey(ev.Player))
+            {
+                Plugin.singleton.PlayerTime[ev.Player] = 0;
             }
         }
     }

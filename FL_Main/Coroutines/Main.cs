@@ -12,10 +12,10 @@ namespace FL_Main.Coroutines
     {
         public IEnumerator<float> PlayerTime()
         {
-            yield return Timing.WaitForSeconds(0.01f);
+            yield return Timing.WaitForSeconds(1f);
             foreach (Player ply in Player.List)
             {
-                Plugin.singleton.PlayerTime[ply] += 0.01f;
+                Plugin.singleton.PlayerTime[ply] += 1f;
             }
         }
     }

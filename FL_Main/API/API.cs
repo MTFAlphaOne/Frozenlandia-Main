@@ -54,20 +54,39 @@ namespace FL_Main.API
             /// <param name="player"></param>
             /// <param name="Coins"></param>
             /// <exception cref="ArgumentNullException"> Will throw the exception when player is null</exception>
-            public void AddCoins(Player player, int Coins) 
+            public int? AddCoins(Player player, int Coins) 
             {
                 if (player == null) 
                 {
+                    return null;
                     throw new ArgumentNullException("Player is null");
                 }
                 if (Plugin.singleton.Coins.ContainsKey(player))
                 {
                     Plugin.singleton.Coins[player] += Coins;
+                    return Plugin.singleton.Coins[player];
                 }
                 else
                 {
                     Plugin.singleton.Coins[player] = Coins;
+                    return Coins;
                 }
+            }
+            public int? RemoveCoins(Player player, int Coins) 
+            {
+                if (player == null)
+                {
+                    return null;
+                }
+                if (Plugin.singleton.Coins.ContainsKey(player) && Plugin.singleton.Coins[player] >= Coins)
+                {
+                    Plugin.singleton.Coins[player] -= Coins;
+                }
+                else
+                {
+                    Plugin.singleton.Coins[player] = 0;
+                }
+                return 0;
             }
         }
     }
