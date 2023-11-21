@@ -106,11 +106,12 @@
     <Compile Include="Commands\ItemLists.cs" />
     <Compile Include="Commands\SCPLISTS.cs" />
     <Compile Include="Commands\WeaponDelivery.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Config\Config.cs" />
     <Compile Include="ConfigObjects\ItemSpawn.cs" />
     <Compile Include="ConfigObjects\PlayerCoins.cs" />
     <Compile Include="ConfigObjects\SupplyDropConfigRandom.cs" />
     <Compile Include="Coroutines\BuddyHandler.cs" />
+    <Compile Include="Coroutines\Main.cs" />
     <Compile Include="Coroutines\SupplyDrop.cs" />
     <Compile Include="EventHandlers\MapHandlers.cs" />
     <Compile Include="EventHandlers\PlayerHandlers.cs" />

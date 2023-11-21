@@ -16,9 +16,8 @@ namespace FL_Main.EventHandlers
         
 
 
-        public IEnumerable<float> SCPHints()
+        public IEnumerator<float> SCPHints()
         {
-            
             yield return Timing.WaitForSeconds(0.1f);
             foreach (Player ply in Player.List)
             {

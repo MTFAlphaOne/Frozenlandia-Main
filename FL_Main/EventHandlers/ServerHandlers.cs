@@ -16,7 +16,7 @@ namespace FL_Main.EventHandlers
 {
     public class ServerHandlers
     {
-        private readonly Config config = new Config();
+        private readonly Config.Config config = new Config.Config();
         private readonly SupplyDrop supplyDrop = new SupplyDrop();
         private readonly BuddyHandler buddyHandler = new BuddyHandler();
         public void OnRoundStarted()
@@ -38,9 +38,10 @@ namespace FL_Main.EventHandlers
             Log.Debug($"end of round lead team was {ev.LeadingTeam} and will be restarting in {ev.TimeToRestart}");
             Server.FriendlyFire = true;
         }
+        #pragma warning disable IDE0060 // Remove unused parameter
         public void OnRoundEnd(RoundEndedEventArgs ev)
+        #pragma warning restore IDE0060 // Remove unused parameter
         {
-            ev.TimeToRestart = 5;
             
             using (var db = new LiteDatabase(Plugin.singleton.DatabasePath))
             {

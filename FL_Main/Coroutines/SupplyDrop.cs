@@ -12,7 +12,7 @@ namespace FL_Main.Coroutines
 {
     public class SupplyDrop
     {
-        private readonly Config config = new Config();
+        private readonly Config.Config config = new Config.Config();
         private int MTFChance = 50;
         private int ChaosChance = 50;
         private float time = 0;

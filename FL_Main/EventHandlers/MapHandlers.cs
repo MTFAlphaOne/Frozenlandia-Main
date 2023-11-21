@@ -11,7 +11,7 @@ public class MapHandlers
 {
     public void OnDetonated()
     {
-        Config config = new Config();
+        Config.Config config = new Config.Config();
         if (config.WarheadDoorOpenAndLock)
         {
             Door.LockAll(999999, DoorLockType.Warhead);
@@ -29,7 +29,11 @@ public class MapHandlers
 
     public void OnRespawningTeam(Exiled.Events.EventArgs.Server.RespawningTeamEventArgs ev)
     {
-        Config config = new Config();
+        Timing.RunCoroutine(FlickerLights(ev));
+    }
+    private IEnumerator<float> FlickerLights(Exiled.Events.EventArgs.Server.RespawningTeamEventArgs ev)
+    {
+        Config.Config config = new Config.Config();
         if (config.FlashingLights)
         {
             Log.Debug("Running Random Lights");
@@ -43,7 +47,7 @@ public class MapHandlers
                     {
                         room.Color = Color.blue;
                     }
-                    Timing.WaitForSeconds((float)random.NextDouble());
+                    yield return Timing.WaitForSeconds((float)random.NextDouble());
                     foreach (Room room in Room.List)
                     {
                         room.Color = Color.clear;
@@ -59,7 +63,7 @@ public class MapHandlers
                     {
                         room.Color = Color.green;
                     }
-                    Timing.WaitForSeconds((float)random.NextDouble());
+                    yield return Timing.WaitForSeconds((float)random.NextDouble());
                     foreach (Room room in Room.List)
                     {
                         room.Color = Color.clear;
@@ -67,5 +71,6 @@ public class MapHandlers
                 }
             }
         }
+        yield break;
     }
 }

@@ -19,14 +19,14 @@ namespace FL_Main.Commands
     [CommandHandler(typeof(GameConsoleCommandHandler))]
     public class BuddyCommand : ICommand
     {
-        private readonly Config _config;
+        private readonly Config.Config _config;
         public string Command { get; set; } = "buddy";
 
         public string[] Aliases { get; set; } = new string[] { "bud" };
 
         public string Description { get; set; } = "You can Buddy with your friends, args 'accept' or '{Player name}'";
 
-        private readonly bool _enabled = false;
+        private readonly bool _enabled = true;
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

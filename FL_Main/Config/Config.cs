@@ -12,7 +12,7 @@ using PlayerRoles;
 using System.IO;
 using Exiled.API.Features;
 
-namespace FL_Main
+namespace FL_Main.Config
 {
     public class Config : IConfig
     {
@@ -161,11 +161,10 @@ namespace FL_Main
         public bool FlashingLights { get; set; } = true;
 
 
-        [Description("save path for DataBase")]
-        public string SavePath { get; set; } = Path.Combine(Paths.Configs, "FL-Main");
+        [Description("Database\nsave path for DataBase")]
+        public string SavePath { get; set; } = Path.Combine(Paths.Configs, "FL-Main-Config");
         [Description("DataBase Name")]
-        public string DatabaseName { get; set; } = "FrozenCoins.db";
-
+        public string DatabaseName { get; set; } = "FrozenLandia.db";
 
 
         [Description("Commands\nWhat will the .scps command will return")]

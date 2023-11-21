@@ -13,7 +13,7 @@ namespace FL_Main.Coroutines
     {
         public void OnRoundStart()
         {
-            Config cfg = new Config();
+            Config.Config cfg = new Config.Config();
             Random rnd = new Random();
 
             /*Dictionary<RoleTypeId, int> roles = new Dictionary<RoleTypeId, int>();
@@ -47,7 +47,7 @@ namespace FL_Main.Coroutines
             }
             if (!ISSCP)
             {
-                Config config = new Config();
+                Config.Config config = new Config.Config();
                 List<string> options = new List<string> { };
                 foreach (string key in buddys.Keys)
                 {

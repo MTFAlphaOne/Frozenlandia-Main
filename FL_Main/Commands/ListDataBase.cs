@@ -25,7 +25,12 @@ namespace FL_Main.Commands
             string test = string.Empty;
             foreach (var Coin in Plugin.singleton.Coins)
             {
-                test += $"Player {Coin.Key} has {Coin} coins\n";
+                test += $"Player {Coin.Key} has {Coin.Value} coins\n";
+            }
+            test += "Player time\n";
+            foreach (var player in Plugin.singleton.PlayerTime)
+            {
+                test += $"Player {player.Key} has {player.Value} time on server\n";
             }
             response = test;
             return true;

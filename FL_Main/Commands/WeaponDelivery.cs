@@ -22,7 +22,7 @@ namespace FL_Main.Commands
 
         public override void LoadGeneratedCommands() { }
 
-        private readonly Config config;
+        private readonly Config.Config config;
         private SupplyDrop supplyDrop;
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

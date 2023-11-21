@@ -12,24 +12,25 @@ using FL_Main.Coroutines;
 using LiteDB;
 using System.IO;
 using FL_Main.ConfigObjects;
+using YamlDotNet.Serialization;
 
 namespace FL_Main
 {
-    public class Plugin : Plugin<Config>
+    public class Plugin : Plugin<Config.Config>
     {
         /// <inheritdoc/>
         public override string Name { get; } = "FL Main Plugin";
 
         /// <inheritdoc/>
-        public override string Prefix { get; } = "FLMain";
+        public override string Prefix { get; } = "FL-Main";
 
         /// <inheritdoc/>
-        public override string Author { get; } = "Dashtiss";
+        public override string Author { get; } = "Dashtiss & Frozenlandia";
 
 
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1, 5, 1);
+        public override Version Version { get; } = new Version(1, 6, 0);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 2, 1);
@@ -59,6 +60,7 @@ namespace FL_Main
 
         public Dictionary<Exiled.API.Features.Player, int> Coins = new Dictionary<Exiled.API.Features.Player, int>();
 
+        public Dictionary<Exiled.API.Features.Player, float> PlayerTime = new Dictionary<Exiled.API.Features.Player, float>();
 
         public string DatabasePath;
 
@@ -110,6 +112,15 @@ namespace FL_Main
                 {
                     // Populate the Plugin.singleton.Coins dictionary with data from the database
                     Plugin.singleton.Coins[playerCoin.Player] = playerCoin.CoinAmount;
+                }
+
+                var PyTime = db.GetCollection < Dictionary < Exiled.API.Features.Player, float>>("PlayerTime");
+                foreach (var vale in PyTime.FindAll())
+                {
+                    foreach (var player in vale.Keys)
+                    {
+                        Plugin.singleton.PlayerTime[player] = vale[player];
+                    }
                 }
             }
 
