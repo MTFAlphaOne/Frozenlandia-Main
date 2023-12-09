@@ -17,7 +17,8 @@ The FL_Main plugin is designed to enhance the gameplay experience in SCP: Secret
 | Endless Radio Battery   | Radios have endless battery life for constant communication.        | ✔️ Done               | ✔️      |
 | Random Elevator Speed   | Elevators go up/down faster or slower, always completely randomly.  | ✔️ Done               | ✔️      |
 | Weapons Deliveries      | Weapons and ammunition deliveries for Chaos/MTF every 6 minutes.    | ✔️ Done               | ✔️      |
-| Coin Database           | This is the database that store all the coins that the server does  | ✔️ Done               | ❌      |
+| Coin Database           | This is the database that store all the coins that the Players have | ✔️ Done               | ❌      |
+| TotalTime Database      | This is the database that store all the Time  that the Players have | ✔️ Done               | ❌      |
 | Custom Things Commands  | These commands will list the Custom SCP. Items and Rooms            | ✔️ Done               | ❌      |
 
 
@@ -27,8 +28,9 @@ To install this plugin, follow these steps:
 
 1. Download the latest release from the [Releases](https://github.com/Dashtiss/FL_Main/releases) page.
 2. Place the downloaded `.dll` file in your server's `Plugins` folder.
-3. Configure the plugin according to your preferences (if necessary).
-4. Start your server.
+3. Download the [`liteDB.dll`](https://github.com/Dashtiss/FL_Main/releases/download/1.7.1/LiteDB.dll) file and put it into your `dependencies` folder
+4. Configure the plugin according to your preferences (if necessary).
+5. Start your server.
 
 ## Configuration
 
