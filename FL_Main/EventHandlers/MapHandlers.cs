@@ -11,7 +11,7 @@ public class MapHandlers
 {
     public void OnDetonated()
     {
-        Config.Config config = new Config.Config();
+        Config config = new Config();
         if (config.WarheadDoorOpenAndLock)
         {
             Door.LockAll(999999, DoorLockType.Warhead);
@@ -33,7 +33,7 @@ public class MapHandlers
     }
     private IEnumerator<float> FlickerLights(Exiled.Events.EventArgs.Server.RespawningTeamEventArgs ev)
     {
-        Config.Config config = new Config.Config();
+        Config config = new Config();
         if (config.FlashingLights)
         {
             Log.Debug("Running Random Lights");

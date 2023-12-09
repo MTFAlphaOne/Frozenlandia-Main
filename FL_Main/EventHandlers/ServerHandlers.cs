@@ -1,22 +1,16 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Server;
-using Exiled.Events.Patches.Generic;
-using FL_Main.Commands;
 using FL_Main.ConfigObjects;
 using FL_Main.Coroutines;
 using LiteDB;
 using MEC;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServerArgs = Exiled.Events.EventArgs.Server;
+
+
 namespace FL_Main.EventHandlers
 {
     public class ServerHandlers
     {
-        private readonly Config.Config config = new Config.Config();
         private readonly SupplyDrop supplyDrop = new SupplyDrop();
         private readonly BuddyHandler buddyHandler = new BuddyHandler();
         public void OnRoundStarted()
@@ -33,7 +27,7 @@ namespace FL_Main.EventHandlers
             }
             buddyHandler.OnRoundStart();
         }
-        public void OnRoundEnded(ServerArgs.RoundEndedEventArgs ev)
+        public void OnRoundEnded(RoundEndedEventArgs ev)
         {
             Log.Debug($"end of round lead team was {ev.LeadingTeam} and will be restarting in {ev.TimeToRestart}");
             Server.FriendlyFire = true;

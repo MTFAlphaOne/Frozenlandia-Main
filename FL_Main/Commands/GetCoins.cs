@@ -25,7 +25,6 @@ namespace FL_Main.Commands
                 response = null;
                 return false;
             }
-            response = string.Empty;
             if (Plugin.singleton.Coins.ContainsKey(player))
             {
                 response = $"You have {Plugin.singleton.Coins[player]} coins";

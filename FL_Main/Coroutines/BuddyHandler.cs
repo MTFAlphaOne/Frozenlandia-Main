@@ -13,7 +13,7 @@ namespace FL_Main.Coroutines
     {
         public void OnRoundStart()
         {
-            Config.Config cfg = new Config.Config();
+            Config cfg = Plugin.singleton.Config;
             Random rnd = new Random();
 
             /*Dictionary<RoleTypeId, int> roles = new Dictionary<RoleTypeId, int>();
@@ -47,7 +47,7 @@ namespace FL_Main.Coroutines
             }
             if (!ISSCP)
             {
-                Config.Config config = new Config.Config();
+                Config config = Plugin.singleton.Config;
                 List<string> options = new List<string> { };
                 foreach (string key in buddys.Keys)
                 {

@@ -25,7 +25,6 @@ namespace FL_Main.Commands
                 response = null;
                 return false;
             }
-            response = string.Empty;
             if (Plugin.singleton.PlayerTime.ContainsKey(player))
             {
                 response = $"You have {Math.Round(Plugin.singleton.PlayerTime[player] / 60)} hours and {Math.Round(Plugin.singleton.PlayerTime[player] - (Math.Round(Plugin.singleton.PlayerTime[player] / 60) * 60))}";

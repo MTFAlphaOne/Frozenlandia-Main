@@ -14,7 +14,7 @@ namespace FL_Main.EventHandlers
 {
     public class PlayerHandlers
     {
-        private readonly Config.Config config = Plugin.singleton.Config;
+        private readonly Config config = Plugin.singleton.Config;
         public void UsingRadioBattery(UsingRadioBatteryEventArgs ev)
         {
             

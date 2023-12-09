@@ -16,10 +16,9 @@ using Player = Exiled.API.Features.Player;
 namespace FL_Main.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    [CommandHandler(typeof(GameConsoleCommandHandler))]
     public class BuddyCommand : ICommand
     {
-        private readonly Config.Config _config;
+        private readonly Config _config;
         public string Command { get; set; } = "buddy";
 
         public string[] Aliases { get; set; } = new string[] { "bud" };
@@ -39,7 +38,7 @@ namespace FL_Main.Commands
                 }
                 response = "";
                 string[] args = arguments.ToArray();
-                if (sender is PlayerCommandSender)
+                if (sender != null)
                 {
                     Player player = Player.Get(((CommandSender)sender).SenderId);
                     if (args.Length != 1)

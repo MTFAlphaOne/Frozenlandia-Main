@@ -16,21 +16,23 @@ using YamlDotNet.Serialization;
 
 namespace FL_Main
 {
-    public class Plugin : Plugin<Config.Config>
+    public class Plugin : Plugin<Config>
     {
         /// <inheritdoc/>
-        public override string Name { get; } = "FL Main Plugin";
+        public override string Name { get; } = "FrozenLandia Main Plugin";
 
         /// <inheritdoc/>
-        public override string Prefix { get; } = "FL-Main";
+        public override string Prefix { get; } = "FrozenLandia";
 
         /// <inheritdoc/>
         public override string Author { get; } = "Dashtiss & Frozenlandia";
 
+        public override PluginPriority Priority { get; } = PluginPriority.Higher;
+
 
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1, 7, 1);
+        public override Version Version { get; } = new Version(2023, 12, 9);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 4, 0);
@@ -56,7 +58,7 @@ namespace FL_Main
         public static Plugin singleton = new Plugin();
 
 
-        public bool DevBuild = true;
+        public bool DevBuild = false;
 
         public Dictionary<Exiled.API.Features.Player, int> Coins = new Dictionary<Exiled.API.Features.Player, int>();
 
@@ -64,9 +66,77 @@ namespace FL_Main
 
         public string DatabasePath;
 
+
         public override void OnEnabled()
         {
 
+            RegisterEvents();
+
+            Directory.CreateDirectory(Config.SavePath);
+
+           
+            // Gets all the stuff and sees if it is a dev build
+
+            if (DevBuild)
+            {
+                Log.Warn("This is a dev Build of FL-Main. Some Features are in testing and may break the server");
+            }
+
+
+
+
+
+            DatabasePath = $"{Config.SavePath}/{Config.DatabaseName}";
+
+            using (var db = new LiteDatabase(DatabasePath))
+            {
+                var playerCoinsCollection = db.GetCollection<PlayerCoin>("PlayerCoins");
+
+                // Clear the existing data in the dictionary
+                Coins.Clear();
+
+                foreach (var playerCoin in playerCoinsCollection.FindAll())
+                {
+                    // Populate the Plugin.singleton.Coins dictionary with data from the database
+                    Coins[playerCoin.Player] = playerCoin.CoinAmount;
+                }
+
+                var PyTime = db.GetCollection < Dictionary < Exiled.API.Features.Player, float>>("PlayerTime");
+                foreach (var vale in PyTime.FindAll())
+                {
+                    foreach (var player in vale.Keys)
+                    {
+                      PlayerTime[player] = vale[player];
+                    }
+                }
+            }
+
+            singleton.WeaponDeliverySystemEnable = Config.EnableSupplyDrops;
+
+
+            base.OnEnabled();
+        }
+        public override void OnDisabled()
+        {
+            UnRegisterEvents();
+
+
+            Timing.KillCoroutines();
+            Log.Warn("FL-Main is disables and all coin systems will be down and the API too.");
+            
+            base.OnDisabled();
+        }
+
+        public override void OnReloaded()
+        {
+            UnRegisterEvents();
+            RegisterEvents();
+            base.OnReloaded();
+        }
+
+
+        private void RegisterEvents()
+        {
             MapHandlers MapHandlers = new MapHandlers();
             ServerHandlers serverHandlers = new ServerHandlers();
             PlayerHandlers playerHandlers = new PlayerHandlers();
@@ -80,60 +150,38 @@ namespace FL_Main
 
             Player.UsingRadioBattery += playerHandlers.UsingRadioBattery;
             Player.InteractingElevator += playerHandlers.InteractingWithElevator;
-            Log.Info("FL-Main Plugin All Registered");
+            
 
             Server.RoundStarted += buddyHandler.OnRoundStart;
             Timing.RunCoroutine(mainCoroutine.PlayerTime());
-            singleton.WeaponDeliverySystemEnable = Config.EnableSupplyDrops;
+
+
+           
             // Player.Hurting += SCPHandlers.OnHurting;
             // Player.ChangingRole += playerHandlers.ChangeRole;
             // Timing.RunCoroutine((IEnumerator<float>)SCPHandlers.SCPHints());
 
-            Log.Warn($"{Config.SavePath}");
-            Directory.CreateDirectory(Config.SavePath);
 
-           
-            // Gets all the stuff and sees if it is a dev build
 
-            if (DevBuild)
-            {
-                Log.Warn("This is a dev Build of FL-Main");
-            }
 
-            DatabasePath = $"{Config.SavePath}/{Config.DatabaseName}";
+            // This is the handlers for all the coins system
+            CoinsEvents coinsEvents = new CoinsEvents();
+            Player.Died += coinsEvents.OnPlayerDeath;
 
-            using (var db = new LiteDatabase(DatabasePath))
-            {
-                var playerCoinsCollection = db.GetCollection<PlayerCoin>("PlayerCoins");
 
-                // Clear the existing data in the dictionary
-                Plugin.singleton.Coins.Clear();
 
-                foreach (var playerCoin in playerCoinsCollection.FindAll())
-                {
-                    // Populate the Plugin.singleton.Coins dictionary with data from the database
-                    Plugin.singleton.Coins[playerCoin.Player] = playerCoin.CoinAmount;
-                }
-
-                var PyTime = db.GetCollection < Dictionary < Exiled.API.Features.Player, float>>("PlayerTime");
-                foreach (var vale in PyTime.FindAll())
-                {
-                    foreach (var player in vale.Keys)
-                    {
-                        Plugin.singleton.PlayerTime[player] = vale[player];
-                    }
-                }
-            }
-
-            base.OnEnabled();
+            Log.Info("FL-Main Plugin All Registered");
         }
-        public override void OnDisabled()
-        {
-            MapHandlers MapHandlers = new MapHandlers();
-            ServerHandlers serverHandlers = new ServerHandlers();
-            PlayerHandlers playerHandlers = new PlayerHandlers();
-            SCPHandlers SCPHandlers = new SCPHandlers();
 
+
+
+        private void UnRegisterEvents()
+        {
+            MapHandlers MapHandlers = null;
+            ServerHandlers serverHandlers = null;
+            PlayerHandlers playerHandlers = null;
+            BuddyHandler buddyHandler = null;
+            Main mainCoroutine = null;
             Server.RespawningTeam -= MapHandlers.OnRespawningTeam;
             Warhead.Detonated -= MapHandlers.OnDetonated;
 
@@ -141,13 +189,17 @@ namespace FL_Main
             Server.RoundEnded -= serverHandlers.OnRoundEnded;
 
             Player.UsingRadioBattery -= playerHandlers.UsingRadioBattery;
+            Player.InteractingElevator -= playerHandlers.InteractingWithElevator;
+            
 
-            //Player.Hurting -= SCPHandlers.OnHurting;
-            //Player.ChangingRole -= playerHandlers.ChangeRole;
+            Server.RoundStarted -= buddyHandler.OnRoundStart;
+            Timing.RunCoroutine(mainCoroutine.PlayerTime());
+            singleton.WeaponDeliverySystemEnable = Config.EnableSupplyDrops;
 
-            Timing.KillCoroutines();
+            // Player.Hurting += SCPHandlers.OnHurting;
+            // Player.ChangingRole += playerHandlers.ChangeRole;
+            // Timing.RunCoroutine((IEnumerator<float>)SCPHandlers.SCPHints());
             Log.Info("FL-Main Plugin All Unregistered");
-            base.OnDisabled();
         }
     }
 }

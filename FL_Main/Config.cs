@@ -12,7 +12,7 @@ using PlayerRoles;
 using System.IO;
 using Exiled.API.Features;
 
-namespace FL_Main.Config
+namespace FL_Main
 {
     public class Config : IConfig
     {
@@ -188,5 +188,14 @@ namespace FL_Main.Config
 • Cyro-Granate: Eine weitentwickelte Granate, welche beim Aufprall ""eiskalte"" Luft freisetzt. Du wirst schneller gefrieren als du selbst schauen kannst.. Sehr sinnvoll gegen SCP-457
 
 • Mediziner-Waffe: Die medizinische Waffe, äußerlich verwechselbar mit dem Revolver, lässt dich durch das Feuern auf Zombies, diese zurück zu verwandeln und von SCP008 zu heilen!";
+
+
+        public Dictionary<ItemType, int> ItemCosts { get; set; } = new Dictionary<ItemType, int>()
+        {
+            { ItemType.Adrenaline, 5 },
+            { ItemType.Ammo12gauge, 10},
+            { ItemType.Ammo9x19, 10 },
+            { ItemType.Radio, 20}
+        };
     }
 }

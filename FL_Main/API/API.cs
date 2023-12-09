@@ -11,7 +11,7 @@ namespace FL_Main.API
     public class API
     {
         public class FLMainDatabase
-        {
+        { 
             /// <summary>
             /// Gets a players time has been on the server 
             /// </summary>
@@ -72,6 +72,13 @@ namespace FL_Main.API
                     return Coins;
                 }
             }
+
+            /// <summary>
+            /// Will remove coins from a player
+            /// </summary>
+            /// <param name="player"></param>
+            /// <param name="Coins"></param>
+            /// <returns>null is invalid player    else remaining coins to player</returns>
             public int? RemoveCoins(Player player, int Coins) 
             {
                 if (player == null)
@@ -88,6 +95,7 @@ namespace FL_Main.API
                 }
                 return 0;
             }
+            
         }
     }
 }
