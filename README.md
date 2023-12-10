@@ -1,9 +1,9 @@
 # Frozenlandia Main Plugin
 
 ## About
-```
 This is a custom plugin built for the frozenlandia server. it has many features including the database for which the coin system is running on. You can view the source code above.
-```
+
+
 ## Features
 This is a list of all the features, major and minor, of the plugin
 
