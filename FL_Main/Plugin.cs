@@ -32,7 +32,7 @@ namespace FL_Main
 
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(2023, 12, 9);
+        public override Version Version { get; } = new Version(1, 8, 1);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 4, 0);
