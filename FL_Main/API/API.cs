@@ -95,7 +95,75 @@ namespace FL_Main.API
                 }
                 return 0;
             }
-            
+        }
+
+        /// <summary>
+        /// This is the main Class that will run all the shop
+        /// </summary>
+        public class Shop
+        {
+            /// <summary>
+            /// Will add a item to the shop
+            /// </summary>
+            /// <param name="Item"></param>
+            /// <param name="Cost"></param>
+            public void AddBuyableItem(ItemType Item, int Cost)
+            {
+                if (!Plugin.singleton.Config.ItemCosts.ContainsKey(Item))
+                {
+                    Plugin.singleton.Config.ItemCosts.Add(Item, Cost);
+                }
+            }
+
+            /// <summary>
+            /// Will change the cost of a item
+            /// </summary>
+            /// <param name="Item"></param>
+            /// <param name="NewCost"></param>
+            public void ChangeCost(ItemType Item, int NewCost)
+            {
+                if (Plugin.singleton.Config.ItemCosts.ContainsKey(Item))
+                {
+                    Plugin.singleton.Config.ItemCosts[Item] = NewCost;
+                }
+            }
+            /// <summary>
+            /// Will make a player buy a item. will return false if inventor is full or if player doesnt have enough coins for all items
+            /// </summary>
+            /// <param name="Player"></param>
+            /// <param name="Item"></param>
+            /// <param name="Ammount"></param>
+            /// <returns></returns>
+            public bool? BuyItem(
+                Player Player, 
+                ItemType Item, 
+                int Ammount= 1
+                )
+            {
+                if (Plugin.singleton.Coins[Player] >= (Plugin.singleton.Config.ItemCosts[Item] * Ammount))
+                {
+                    if (Player == null) { return null; }
+                    if (!Player.IsInventoryFull)
+                    {
+                        for (int i = 0; i < Ammount; i++)
+                        {
+                            if (Player.IsInventoryFull)
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                Player.AddItem(Item);
+                            }
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }

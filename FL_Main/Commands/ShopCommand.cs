@@ -20,7 +20,7 @@ namespace FL_Main.Commands
             try
             {
 
-                Player player = sender as Player;
+                Player player = (Player)sender;
                 if (arguments.Count > 0)
                 {
                     if (player != null)

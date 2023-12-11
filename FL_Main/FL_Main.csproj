@@ -38,10 +38,6 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-Publicized, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EXILED.8.4.3\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EXILED.8.4.3\lib\net48\CommandSystem.Core.dll</HintPath>
     </Reference>
@@ -95,8 +91,8 @@
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
-    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\EXILED.8.4.3\lib\net48\YamlDotNet.dll</HintPath>
+    <Reference Include="YamlDotNet, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.13.7.1\lib\net47\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +102,8 @@
     <Compile Include="Commands\GetPlayTime.cs" />
     <Compile Include="Commands\ListDataBase.cs" />
     <Compile Include="Commands\ItemLists.cs" />
+    <Compile Include="Commands\Nick\Nick.cs" />
+    <Compile Include="Commands\Nick\UnNick.cs" />
     <Compile Include="Commands\SCPLISTS.cs" />
     <Compile Include="Commands\ShopCommand.cs" />
     <Compile Include="Commands\WeaponDelivery.cs" />
@@ -126,6 +124,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

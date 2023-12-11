@@ -19,7 +19,7 @@ namespace FL_Main.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Player player = sender as Player;
+            Player player = (Player)sender;
             if (player == null)
             {
                 response = null;

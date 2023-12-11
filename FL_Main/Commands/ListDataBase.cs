@@ -10,17 +10,15 @@ namespace FL_Main.Commands
 {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
     [CommandHandler(typeof(GameConsoleCommandHandler))]
-    public class ListDataBase : ParentCommand
+    public class ListDataBase : ICommand
     {
-        public override string Command { get; } = "Will List out the DataBase";
+        public  string Command { get; } = "Will List out the DataBase";
 
-        public override string[] Aliases { get; } = new string[] { "WepDel" };
+        public  string[] Aliases { get; } = new string[] { "WepDel" };
 
-        public override string Description { get; } = "This will Force a Weapon Delivery. Must be 'chaos' or 'mtf'";
+        public  string Description { get; } = "This will Force a Weapon Delivery. Must be 'chaos' or 'mtf'";
 
-        public override void LoadGeneratedCommands() { }
-
-        protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             string test = string.Empty;
             foreach (var Coin in Plugin.singleton.Coins)

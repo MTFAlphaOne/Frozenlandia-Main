@@ -12,19 +12,19 @@ namespace FL_Main.Commands
 {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
     [CommandHandler(typeof(GameConsoleCommandHandler))]
-    public class WeaponDelivery : ParentCommand
+    public class WeaponDelivery : ICommand
     {
-        public override string Command { get; } = "WeaponDelivery";
+        public string Command { get; } = "WeaponDelivery";
 
-        public override string[] Aliases { get; } = new string[] { "WepDel" };
+        public  string[] Aliases { get; } = new string[] { "WepDel" };
 
-        public override string Description { get; } = "This will Force a Weapon Delivery. Must be 'chaos' or 'mtf'";
+        public  string Description { get; } = "This will Force a Weapon Delivery. Must be 'chaos' or 'mtf'";
 
-        public override void LoadGeneratedCommands() { }
+        public  void LoadGeneratedCommands() { }
 
-        private readonly Config config;
-        private readonly SupplyDrop supplyDrop;
-        protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        private readonly Config config = new Config();
+        private readonly SupplyDrop supplyDrop = new SupplyDrop();
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!config.EnableSupplyDrops)
             {

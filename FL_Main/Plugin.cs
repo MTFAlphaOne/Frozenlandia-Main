@@ -5,17 +5,18 @@ using FL_Main.EventHandlers;
 using Server = Exiled.Events.Handlers.Server;
 using Warhead = Exiled.Events.Handlers.Warhead;
 using Player = Exiled.Events.Handlers.Player;
-using FL_Main.Commands;
 using System.Collections.Generic;
 using MEC;
 using FL_Main.Coroutines;
 using LiteDB;
 using System.IO;
 using FL_Main.ConfigObjects;
-using YamlDotNet.Serialization;
 
 namespace FL_Main
 {
+    /// <summary>
+    /// This is the Main Plugin File
+    /// </summary>
     public class Plugin : Plugin<Config>
     {
         /// <inheritdoc/>
@@ -32,7 +33,7 @@ namespace FL_Main
 
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1, 8, 1);
+        public override Version Version { get; } = new Version(1, 8, 3);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 4, 0);
@@ -66,6 +67,7 @@ namespace FL_Main
 
         public string DatabasePath;
 
+        public Dictionary<string, string> PlayerNicks = new Dictionary<string, string>();
 
         public override void OnEnabled()
         {
@@ -106,7 +108,7 @@ namespace FL_Main
                 {
                     foreach (var player in vale.Keys)
                     {
-                      PlayerTime[player] = vale[player];
+                        PlayerTime[player] = vale[player];
                     }
                 }
             }
@@ -116,6 +118,7 @@ namespace FL_Main
 
             base.OnEnabled();
         }
+        
         public override void OnDisabled()
         {
             UnRegisterEvents();
