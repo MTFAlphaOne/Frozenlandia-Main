@@ -197,5 +197,16 @@ namespace FL_Main
             { ItemType.Ammo9x19, 10 },
             { ItemType.Radio, 20}
         };
+
+
+
+        [Description("This is the config for all the events for coins\nAmmount of coins if a player kills someone")]
+        public int KillCost { get; set; } = 5;
+        [Description("Ammount of coins the player will recieve when they escape")]
+        public int EscapeCost { get; set; } = 8;
+        [Description("Chance that a coin will give coins when flipped")]
+        public int CoinChance { get; set; } = 1;
+        [Description("How muc hwill a coin give")]
+        public int CoinCost { get; set; } = 5;
     }
 }

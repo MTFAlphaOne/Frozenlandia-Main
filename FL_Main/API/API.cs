@@ -165,5 +165,53 @@ namespace FL_Main.API
                 }
             }
         }
+        /// <summary>
+        /// This is the main class for all the stuff
+        /// </summary>
+        public class Features
+        {
+            /// <summary>
+            /// This is the dictionary that 
+            /// </summary>
+            public Dictionary<Player, int> PlayersCoins { get; set; } = Plugin.singleton.Coins;
+
+
+            /// <summary>
+            /// Function to set a player's nickname
+            /// </summary>
+            /// <param name="player"></param>
+            /// <param name="Nick"></param>
+            public void SetPlayerNick(Player player, string Nick)
+            {
+                Plugin.singleton.PlayerNicks.Add(Nick, player.DisplayNickname);
+                player.DisplayNickname = Nick;
+            }
+
+            /// <summary>
+            /// function to remove a players nickname
+            /// </summary>
+            /// <param name="player"></param>
+            /// <returns>a null if player is null else true or false if the players name was reset</returns>
+            public bool? RemovePlayerNick(Player player)
+            {
+                if (Plugin.singleton.PlayerNicks[player.DisplayNickname].Contains(player.DisplayNickname))
+                {
+                    string oldname = Plugin.singleton.PlayerNicks[player.DisplayNickname];
+
+                    player.DisplayNickname = Plugin.singleton.PlayerNicks[player.DisplayNickname];
+
+                    Plugin.singleton.PlayerNicks.Remove(oldname);
+                    return true;
+                }
+                else if (player == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

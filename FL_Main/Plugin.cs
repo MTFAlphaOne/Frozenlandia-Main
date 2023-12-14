@@ -56,7 +56,7 @@ namespace FL_Main
         public CoroutineHandle supplyDropCoroutine;
 
 
-        public static Plugin singleton = new Plugin();
+        public static Plugin singleton;
 
 
         public bool DevBuild = false;
@@ -71,6 +71,7 @@ namespace FL_Main
 
         public override void OnEnabled()
         {
+            singleton = this;
 
             RegisterEvents();
 
@@ -123,7 +124,7 @@ namespace FL_Main
         {
             UnRegisterEvents();
 
-
+            singleton = null;
             Timing.KillCoroutines();
             Log.Warn("FL-Main is disables and all coin systems will be down and the API too.");
             
@@ -170,6 +171,8 @@ namespace FL_Main
             // This is the handlers for all the coins system
             CoinsEvents coinsEvents = new CoinsEvents();
             Player.Died += coinsEvents.OnPlayerDeath;
+            Player.FlippingCoin += coinsEvents.OnCoinFlip;
+            Player.Escaping += coinsEvents.PlayerEscaping;
 
 
 
