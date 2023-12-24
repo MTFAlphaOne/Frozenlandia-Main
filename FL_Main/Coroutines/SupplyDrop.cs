@@ -32,7 +32,7 @@ namespace FL_Main.Coroutines
             {
                  time = config.SupplyDropMinutes * 60;
             }
-            yield return Timing.WaitForSeconds(config.SupplyDropMinutes * 60 + time);
+            yield return Timing.WaitForSeconds(time);
             int Chance = random.Next(100);
             int Team = random.Next(0, 1);    // 0 is mtf \ 1 is chaos
 

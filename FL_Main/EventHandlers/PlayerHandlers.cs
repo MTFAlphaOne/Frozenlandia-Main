@@ -55,9 +55,12 @@ namespace FL_Main.EventHandlers
             float maxValue = 1f;
             float time = ev.Lift.AnimationTime;
             float Randflt = (float)(random.NextDouble() * (maxValue - minValue) + minValue);
-            time += Randflt;
+            time += Randflt;       
+
             yield return Timing.WaitForSeconds(ev.Lift.DoorCloseTime);
+
             ev.Lift.AnimationTime = time;
+     
             yield return Timing.WaitForSeconds(time + (-1 * Randflt));
             ev.Lift.AnimationTime = time + (-1 * Randflt);
             yield break;

@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FL_Main.Commands.Nick
+namespace FL_Main.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Nick : ICommand
     {
-        public string Command { get; } = "Nick";
+        public string Command { get; } = "nick";
 
         public string[] Aliases { get; } = new string[] { "setnick" };
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FL_Main.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    public class ItemLists
+    public class ItemLists : ICommand
     {
         public string Command { get; } = "items";
 

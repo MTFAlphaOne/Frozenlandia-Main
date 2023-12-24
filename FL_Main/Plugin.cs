@@ -59,7 +59,7 @@ namespace FL_Main
         public static Plugin singleton;
 
 
-        public bool DevBuild = false;
+        public bool DevBuild = true;
 
         public Dictionary<Exiled.API.Features.Player, int> Coins = new Dictionary<Exiled.API.Features.Player, int>();
 

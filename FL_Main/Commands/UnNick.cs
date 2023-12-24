@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FL_Main.Commands.Nick;
-namespace FL_Main.Commands.Nick
+using FL_Main.Commands;
+namespace FL_Main.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
     public class UnNick : ICommand
@@ -37,7 +37,7 @@ namespace FL_Main.Commands.Nick
             }
             else
             {
-                response = " Du hast nicht die erforderlichen Rechte, um dich zu nicken.";
+                response = "Du hast nicht die erforderlichen Rechte, um dich zu nicken.";
                 return false;
             }
         }

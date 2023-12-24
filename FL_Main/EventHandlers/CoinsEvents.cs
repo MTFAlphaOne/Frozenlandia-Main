@@ -10,23 +10,22 @@ namespace FL_Main.EventHandlers
 {
     public class CoinsEvents
     {
-        private Config config = Plugin.singleton.Config;
+        private readonly Config config = Plugin.singleton.Config;
 
 
         public void OnPlayerDeath(DiedEventArgs ev)
         {
             if (ev != null)
             {
-                if (ev.Player != null)
+                if (ev.Attacker != null)
                 {
-                
                     Plugin.singleton.Coins[ev.Attacker] += config.KillCost;
                 }
             }
         }
         public void PlayerEscaping(EscapingEventArgs ev)
         {
-            if (ev.EscapeScenario == EscapeScenario.CuffedClassD || ev.EscapeScenario == EscapeScenario.Scientist)
+            if (ev.EscapeScenario != EscapeScenario.CuffedClassD || ev.EscapeScenario != EscapeScenario.Scientist)
             {
                 if (Plugin.singleton.Coins.ContainsKey(ev.Player))
                 {

@@ -19,10 +19,10 @@ namespace FL_Main.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Player player = (Player)sender;
+            Player player = sender as Player;
             if (player == null)
             {
-                response = null;
+                response = "null";
                 return false;
             }
             if (Plugin.singleton.Coins.ContainsKey(player))

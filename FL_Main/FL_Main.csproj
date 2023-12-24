@@ -7,8 +7,8 @@
     <ProjectGuid>{30C67F52-A306-4965-A0C8-5EC8E80FE125}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FL_Main</RootNamespace>
-    <AssemblyName>FL_Main</AssemblyName>
+    <RootNamespace>FrozenLandia_Main</RootNamespace>
+    <AssemblyName>FrozenLandia_Main</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -102,8 +102,8 @@
     <Compile Include="Commands\GetPlayTime.cs" />
     <Compile Include="Commands\ListDataBase.cs" />
     <Compile Include="Commands\ItemLists.cs" />
-    <Compile Include="Commands\Nick\Nick.cs" />
-    <Compile Include="Commands\Nick\UnNick.cs" />
+    <Compile Include="Commands\Nick.cs" />
+    <Compile Include="Commands\UnNick.cs" />
     <Compile Include="Commands\SCPLISTS.cs" />
     <Compile Include="Commands\ShopCommand.cs" />
     <Compile Include="Commands\WeaponDelivery.cs" />
