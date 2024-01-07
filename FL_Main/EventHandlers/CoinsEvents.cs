@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using System;
 using System.Collections.Generic;
@@ -19,21 +20,32 @@ namespace FL_Main.EventHandlers
             {
                 if (ev.Attacker != null)
                 {
-                    Plugin.singleton.Coins[ev.Attacker] += config.KillCost;
+                    if (Plugin.singleton.Coins.ContainsKey(ev.Player))
+                    {
+                        Plugin.singleton.Coins[ev.Attacker] += config.KillCost;
+                        SendHint(ev.Player, config.KillCost);
+                    }
+                    else
+                    {
+                        Plugin.singleton.Coins.Add(ev.Player, config.KillCost);
+                        SendHint(ev.Player, config.KillCost);
+                    }
                 }
             }
         }
         public void PlayerEscaping(EscapingEventArgs ev)
         {
-            if (ev.EscapeScenario != EscapeScenario.CuffedClassD || ev.EscapeScenario != EscapeScenario.Scientist)
+            if (ev.EscapeScenario != EscapeScenario.CuffedClassD || ev.EscapeScenario != EscapeScenario.CuffedScientist)
             {
                 if (Plugin.singleton.Coins.ContainsKey(ev.Player))
                 {
                     Plugin.singleton.Coins[ev.Player] += config.EscapeCost;
+                    SendHint(ev.Player, config.EscapeCost);
                 }
                 else
                 {
                     Plugin.singleton.Coins.Add(ev.Player, config.EscapeCost);
+                    SendHint(ev.Player, config.EscapeCost);
                 }
             }
         }
@@ -44,13 +56,40 @@ namespace FL_Main.EventHandlers
                 ev.IsTails = true;
                 if (Plugin.singleton.Coins.ContainsKey(ev.Player))
                 {
-                    Plugin.singleton.Coins[ev.Player] += config.EscapeCost;
+                    Plugin.singleton.Coins[ev.Player] += config.CoinCost;
+                    SendHint(ev.Player, config.CoinCost);
                 }
                 else
                 {
-                    Plugin.singleton.Coins.Add(ev.Player, config.EscapeCost);
+                    Plugin.singleton.Coins.Add(ev.Player, config.CoinCost);
+                    SendHint(ev.Player, config.CoinCost);
                 }
             }
+        }
+        public void OnItemUsed(UsingItemEventArgs ev)
+        {
+            if (config.ItemAmmount.ContainsKey(ev.Item.Type))
+            {
+                if (Plugin.singleton.Coins.ContainsKey(ev.Player))
+                {
+                    Plugin.singleton.Coins[ev.Player] += config.ItemAmmount[ev.Item.Type];
+                    SendHint(ev.Player, config.ItemAmmount[ev.Item.Type]);
+                }
+                else
+                {
+                    Plugin.singleton.Coins.Add(ev.Player, config.ItemAmmount[ev.Item.Type]);
+                    SendHint(ev.Player, config.ItemAmmount[ev.Item.Type]);
+                }
+            }
+        }
+        private void SendHint(Player player, int NewCoins) 
+        {
+            string response = config.PlayerGetsCoins;
+            if (response.Contains("{coins}"))
+            {
+                response.Replace("{coins}", NewCoins.ToString());
+            }
+            player.ShowHint(response);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FL_Main.API
 {
-    public class API
+    public class Features
     {
         public class FLMainDatabase
         { 

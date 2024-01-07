@@ -141,6 +141,7 @@ namespace FL_Main
 
         private void RegisterEvents()
         {
+            
             MapHandlers MapHandlers = new MapHandlers();
             ServerHandlers serverHandlers = new ServerHandlers();
             PlayerHandlers playerHandlers = new PlayerHandlers();

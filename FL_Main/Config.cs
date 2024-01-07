@@ -208,5 +208,14 @@ namespace FL_Main
         public int CoinChance { get; set; } = 1;
         [Description("How muc hwill a coin give")]
         public int CoinCost { get; set; } = 5;
+        [Description("When a item is used how many coins will be given")]
+        public Dictionary<ItemType, int> ItemAmmount { get; set; } = new Dictionary<ItemType, int>
+        {
+            { ItemType.SCP500, 5 },
+            { ItemType.Jailbird, 1 },
+
+        };
+        [Description("What will be sent to the player when they get coins\n\nPut {coins} for how many coins that they were given")]
+        public string PlayerGetsCoins { get; set; } = "<color=#2c312e><alpha=#66><size=60%><align=\"center\">_______|||||||||You got {coins} new coins||||||||_______";
     }
 }
