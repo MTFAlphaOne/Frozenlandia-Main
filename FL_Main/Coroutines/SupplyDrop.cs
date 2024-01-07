@@ -51,7 +51,7 @@ namespace FL_Main.Coroutines
                     MTFChance++;
                 }
             }
-            else if (Team == 1) ;
+            else if (Team == 1)
             {
                 if (Chance < ChaosChance)
                 {

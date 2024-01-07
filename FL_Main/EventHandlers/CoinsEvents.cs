@@ -20,16 +20,17 @@ namespace FL_Main.EventHandlers
             {
                 if (ev.Attacker != null)
                 {
-                    if (Plugin.singleton.Coins.ContainsKey(ev.Player))
+                    if (Plugin.singleton.Coins.TryGetValue(ev.Attacker, out int attackerCoins))
                     {
-                        Plugin.singleton.Coins[ev.Attacker] += config.KillCost;
+                        Plugin.singleton.Coins[ev.Attacker] = attackerCoins + config.KillCost;
                         SendHint(ev.Player, config.KillCost);
                     }
                     else
                     {
-                        Plugin.singleton.Coins.Add(ev.Player, config.KillCost);
+                        Plugin.singleton.Coins.Add(ev.Attacker, config.KillCost);
                         SendHint(ev.Player, config.KillCost);
                     }
+
                 }
             }
         }

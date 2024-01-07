@@ -174,6 +174,7 @@ namespace FL_Main
             Player.Died += coinsEvents.OnPlayerDeath;
             Player.FlippingCoin += coinsEvents.OnCoinFlip;
             Player.Escaping += coinsEvents.PlayerEscaping;
+            Player.UsingItem += coinsEvents.OnItemUsed;
 
 
 

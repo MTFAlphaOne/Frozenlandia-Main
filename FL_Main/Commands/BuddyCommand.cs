@@ -18,7 +18,7 @@ namespace FL_Main.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     public class BuddyCommand : ICommand
     {
-        private readonly Config _config;
+        private readonly Config _config = Plugin.singleton.Config;
         public string Command { get; set; } = "buddy";
 
         public string[] Aliases { get; set; } = new string[] { "bud" };
