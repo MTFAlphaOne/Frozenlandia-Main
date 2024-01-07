@@ -33,7 +33,7 @@ namespace FL_Main
 
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1, 8, 3);
+        public override Version Version { get; } = new Version(1, 9, 0);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(8, 4, 0);
@@ -59,7 +59,7 @@ namespace FL_Main
         public static Plugin singleton;
 
 
-        public bool DevBuild = true;
+        public bool DevBuild = false;
 
         public Dictionary<Exiled.API.Features.Player, int> Coins = new Dictionary<Exiled.API.Features.Player, int>();
 
