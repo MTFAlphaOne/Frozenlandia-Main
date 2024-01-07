@@ -22,8 +22,7 @@ namespace FL_Main.Commands
         {
             if (sender.CheckPermission("fl.nick"))
             {
-                Player player = sender as Player;
-                if (arguments.
+                Player player = Player.Get(sender);
                 if (arguments.Count == 1)
                 {
                     Plugin.singleton.PlayerNicks[player.DisplayNickname] = arguments.Array[0];

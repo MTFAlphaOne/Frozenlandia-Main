@@ -10,6 +10,5 @@ namespace FrozenLandia_Main.API.events
 {
     public class Events
     {
-        public static Event<>
     }
 }
