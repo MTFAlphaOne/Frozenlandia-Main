@@ -1,4 +1,7 @@
-﻿using Exiled.API.Features;
+﻿/// <summary>
+/// This is the main class for all the stuff
+/// </summary>
+using Exiled.API.Features;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -165,10 +168,8 @@ namespace FL_Main.API
                 }
             }
         }
-        /// <summary>
-        /// This is the main class for all the stuff
-        /// </summary>
-        public class Features
+        
+        public class Nick
         {
             /// <summary>
             /// This is the dictionary that 
