@@ -22,14 +22,15 @@ namespace FL_Main.Commands
         {
             if (sender.CheckPermission("fl.nick"))
             {
-                Player player = (Player)sender;
+                Player player = Player.Get(sender);
                 if (Plugin.singleton.PlayerNicks.ContainsKey(player.DisplayNickname))
                 {
                     player.DisplayNickname = Plugin.singleton.PlayerNicks[player.DisplayNickname];
+                    Plugin.singleton.PlayerNicks.Remove(player.DisplayNickname);
                     response = "Unnicked";
                     return true;
                 }
-                else;
+                else
                 {
                     response = "";
                     return false;
